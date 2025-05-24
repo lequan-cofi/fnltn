@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.Series series7 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView7 = new DevExpress.XtraCharts.DoughnutSeriesView();
-            DevExpress.XtraCharts.Series series8 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView8 = new DevExpress.XtraCharts.DoughnutSeriesView();
-            DevExpress.XtraCharts.Series series9 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView9 = new DevExpress.XtraCharts.DoughnutSeriesView();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView1 = new DevExpress.XtraCharts.DoughnutSeriesView();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView2 = new DevExpress.XtraCharts.DoughnutSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,18 +49,19 @@
             this.bnt_cp = new System.Windows.Forms.Button();
             this.bnt_ln = new System.Windows.Forms.Button();
             this.chartControlDoanhThu = new DevExpress.XtraCharts.ChartControl();
-            this.chartControlLoiNhuan = new DevExpress.XtraCharts.ChartControl();
             this.chartControlChiPhi = new DevExpress.XtraCharts.ChartControl();
+            this.chartControlLoiNhuan = new DevExpress.XtraCharts.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDoanhThu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartControlLoiNhuan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlChiPhi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControlLoiNhuan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -88,7 +90,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(46, 173);
+            this.label4.Location = new System.Drawing.Point(61, 168);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 24);
@@ -97,8 +99,8 @@
             // 
             // tongdt
             // 
-            this.tongdt.Location = new System.Drawing.Point(217, 177);
-            this.tongdt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tongdt.Location = new System.Drawing.Point(217, 173);
+            this.tongdt.Margin = new System.Windows.Forms.Padding(2);
             this.tongdt.Name = "tongdt";
             this.tongdt.Size = new System.Drawing.Size(125, 20);
             this.tongdt.TabIndex = 7;
@@ -106,12 +108,12 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 249);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 197);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(536, 98);
+            this.dataGridView1.Size = new System.Drawing.Size(536, 150);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -121,7 +123,7 @@
             this.bnttaoexel.FlatAppearance.BorderSize = 0;
             this.bnttaoexel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnttaoexel.Location = new System.Drawing.Point(85, 387);
-            this.bnttaoexel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnttaoexel.Margin = new System.Windows.Forms.Padding(2);
             this.bnttaoexel.Name = "bnttaoexel";
             this.bnttaoexel.Size = new System.Drawing.Size(95, 36);
             this.bnttaoexel.TabIndex = 9;
@@ -135,7 +137,7 @@
             this.bntdong.FlatAppearance.BorderSize = 0;
             this.bntdong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntdong.Location = new System.Drawing.Point(322, 387);
-            this.bntdong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bntdong.Margin = new System.Windows.Forms.Padding(2);
             this.bntdong.Name = "bntdong";
             this.bntdong.Size = new System.Drawing.Size(95, 36);
             this.bntdong.TabIndex = 12;
@@ -174,7 +176,7 @@
             this.bnt_dt.FlatAppearance.BorderSize = 0;
             this.bnt_dt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnt_dt.Location = new System.Drawing.Point(50, 26);
-            this.bnt_dt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnt_dt.Margin = new System.Windows.Forms.Padding(2);
             this.bnt_dt.Name = "bnt_dt";
             this.bnt_dt.Size = new System.Drawing.Size(95, 36);
             this.bnt_dt.TabIndex = 16;
@@ -188,7 +190,7 @@
             this.bnt_cp.FlatAppearance.BorderSize = 0;
             this.bnt_cp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnt_cp.Location = new System.Drawing.Point(217, 26);
-            this.bnt_cp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnt_cp.Margin = new System.Windows.Forms.Padding(2);
             this.bnt_cp.Name = "bnt_cp";
             this.bnt_cp.Size = new System.Drawing.Size(95, 36);
             this.bnt_cp.TabIndex = 17;
@@ -202,7 +204,7 @@
             this.bnt_ln.FlatAppearance.BorderSize = 0;
             this.bnt_ln.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnt_ln.Location = new System.Drawing.Point(414, 26);
-            this.bnt_ln.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnt_ln.Margin = new System.Windows.Forms.Padding(2);
             this.bnt_ln.Name = "bnt_ln";
             this.bnt_ln.Size = new System.Drawing.Size(95, 36);
             this.bnt_ln.TabIndex = 18;
@@ -212,49 +214,55 @@
             // 
             // chartControlDoanhThu
             // 
-            this.chartControlDoanhThu.Location = new System.Drawing.Point(558, 118);
+            this.chartControlDoanhThu.Location = new System.Drawing.Point(554, 136);
             this.chartControlDoanhThu.Name = "chartControlDoanhThu";
-            series7.Name = "Series 1";
-            series7.SeriesID = 0;
-            series7.View = doughnutSeriesView7;
+            series1.Name = "Series 1";
+            series1.SeriesID = 0;
+            series1.View = doughnutSeriesView1;
             this.chartControlDoanhThu.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series7};
+        series1};
             this.chartControlDoanhThu.Size = new System.Drawing.Size(439, 237);
             this.chartControlDoanhThu.TabIndex = 19;
             this.chartControlDoanhThu.Click += new System.EventHandler(this.chartControlChiPhi_Click);
             // 
-            // chartControlLoiNhuan
-            // 
-            this.chartControlLoiNhuan.Location = new System.Drawing.Point(558, 118);
-            this.chartControlLoiNhuan.Name = "chartControlLoiNhuan";
-            series8.Name = "Series 1";
-            series8.SeriesID = 0;
-            series8.View = doughnutSeriesView8;
-            this.chartControlLoiNhuan.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series8};
-            this.chartControlLoiNhuan.Size = new System.Drawing.Size(439, 237);
-            this.chartControlLoiNhuan.TabIndex = 20;
-            // 
             // chartControlChiPhi
             // 
-            this.chartControlChiPhi.Location = new System.Drawing.Point(558, 119);
+            this.chartControlChiPhi.Location = new System.Drawing.Point(553, 137);
             this.chartControlChiPhi.Name = "chartControlChiPhi";
-            series9.Name = "Series 1";
-            series9.SeriesID = 0;
-            series9.View = doughnutSeriesView9;
+            series2.Name = "Series 1";
+            series2.SeriesID = 0;
+            series2.View = doughnutSeriesView2;
             this.chartControlChiPhi.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series9};
+        series2};
             this.chartControlChiPhi.Size = new System.Drawing.Size(439, 237);
             this.chartControlChiPhi.TabIndex = 21;
+            // 
+            // chartControlLoiNhuan
+            // 
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControlLoiNhuan.Diagram = xyDiagram1;
+            this.chartControlLoiNhuan.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+            this.chartControlLoiNhuan.Location = new System.Drawing.Point(554, 135);
+            this.chartControlLoiNhuan.Name = "chartControlLoiNhuan";
+            series3.Name = "Series 2";
+            series3.SeriesID = 1;
+            stackedBarSeriesView1.BarWidth = 0.8D;
+            stackedBarSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(192)))));
+            series3.View = stackedBarSeriesView1;
+            this.chartControlLoiNhuan.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series3};
+            this.chartControlLoiNhuan.Size = new System.Drawing.Size(438, 350);
+            this.chartControlLoiNhuan.TabIndex = 22;
             // 
             // doanhthu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
-            this.ClientSize = new System.Drawing.Size(999, 437);
-            this.Controls.Add(this.chartControlChiPhi);
+            this.ClientSize = new System.Drawing.Size(999, 539);
             this.Controls.Add(this.chartControlLoiNhuan);
+            this.Controls.Add(this.chartControlChiPhi);
             this.Controls.Add(this.chartControlDoanhThu);
             this.Controls.Add(this.bnt_ln);
             this.Controls.Add(this.bnt_cp);
@@ -269,20 +277,21 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "doanhthu";
             this.Text = "doanhthu";
             this.Load += new System.EventHandler(this.doanhthu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDoanhThu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartControlLoiNhuan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(doughnutSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlChiPhi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControlLoiNhuan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,7 +312,7 @@
         private System.Windows.Forms.Button bnt_cp;
         private System.Windows.Forms.Button bnt_ln;
         private DevExpress.XtraCharts.ChartControl chartControlDoanhThu;
-        private DevExpress.XtraCharts.ChartControl chartControlLoiNhuan;
         private DevExpress.XtraCharts.ChartControl chartControlChiPhi;
+        private DevExpress.XtraCharts.ChartControl chartControlLoiNhuan;
     }
 }

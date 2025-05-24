@@ -394,7 +394,7 @@ namespace BTLtest2
 
         private void bnt_ln_Click(object sender, EventArgs e)
         {
-            dataloinguan();
+            dataloinhuan();
         }
 
         private void bntdong_Click(object sender, EventArgs e)
@@ -512,22 +512,20 @@ namespace BTLtest2
             }
         }
 
-        private void LoadLoiNhuanChart(DateTime fromDate, DateTime toDate)
+        private void LoadLoiNhuanChart(List<MatHangThongKe> loiNhuanDataForChart)
         {
             try
             {
-                List<MatHangThongKe> doanhThuData = thongkedoanhthu.GetDoanhThuTheoMatHang(fromDate, toDate) ?? new List<MatHangThongKe>();
-                List<MatHangThongKe> chiPhiData = thongkechiphi.GetChiPhiTheoMatHang(fromDate, toDate) ?? new List<MatHangThongKe>();
-                List<MatHangThongKe> loiNhuanData = CalculateLoiNhuanTheoMatHang(doanhThuData, chiPhiData);
-
-                // Chỉ hiển thị biểu đồ lợi nhuận nếu có ít nhất một mục có lợi nhuận khác 0
-                if (loiNhuanData.Any(item => item.GiaTri != 0))
+                // Dữ liệu lợi nhuận (loiNhuanDataForChart) đã được tính toán và lọc sẵn từ dataloinhuan()
+                if (loiNhuanDataForChart != null && loiNhuanDataForChart.Any()) // Kiểm tra xem có dữ liệu không (sau khi lọc)
                 {
-                    PopulateDoughnutChart(chartControlLoiNhuan, loiNhuanData, "Lợi Nhuận Theo Mặt Hàng");
+                    // Chỉ kiểm tra Any() vì PopulateDevExpressBarChart đã xử lý việc có item.GiaTri != 0 hay không.
+                    // Hoặc chặt chẽ hơn: if (loiNhuanDataForChart != null && loiNhuanDataForChart.Any(item => item.GiaTri != 0))
+                    PopulateDevExpressBarChart(chartControlLoiNhuan, loiNhuanDataForChart, "Lợi Nhuận Theo Mặt Hàng");
                 }
                 else
                 {
-                    ShowNoDataMessage(chartControlLoiNhuan, "Không có dữ liệu lợi nhuận để hiển thị.");
+                    ShowNoDataMessage(chartControlLoiNhuan, "Không có dữ liệu lợi nhuận để hiển thị (hoặc không có mục nào thỏa mãn điều kiện lọc).");
                 }
             }
             catch (Exception ex)
@@ -578,6 +576,95 @@ namespace BTLtest2
                 // .Where(item => item.GiaTri != 0) // Tùy chọn: Chỉ hiển thị mặt hàng có lợi nhuận khác 0
                 .OrderByDescending(item => item.GiaTri) // Sắp xếp theo lợi nhuận giảm dần
                 .ToList();
+        }
+        private void PopulateDevExpressBarChart(DevExpress.XtraCharts.ChartControl chartControl, List<MatHangThongKe> data, string chartTitleText)
+        {
+            chartControl.Series.Clear();
+            chartControl.Titles.Clear();
+            chartControl.AnnotationRepository.Clear(); // Xóa các chú thích cũ (nếu có)
+
+            // Gỡ bỏ handler cũ nếu có để tránh gọi nhiều lần (quan trọng nếu hàm này được gọi lại)
+            chartControl.CustomDrawSeriesPoint -= ChartControl_LoiNhuan_CustomDrawSeriesPoint;
+
+
+            if (data == null || !data.Any())
+            {
+                ShowNoDataMessage(chartControl, "Không có dữ liệu để hiển thị.");
+                return;
+            }
+
+            Series seriesLoiNhuan = new Series("Lợi Nhuận", ViewType.Bar);
+
+            foreach (var item in data)
+            {
+                seriesLoiNhuan.Points.Add(new SeriesPoint(item.TenMatHang, item.GiaTri));
+            }
+            // Hoặc bạn có thể dùng DataSource nếu muốn:
+            // seriesLoiNhuan.ArgumentDataMember = "TenMatHang";
+            // seriesLoiNhuan.ValueDataMembers.AddRange("GiaTri");
+            // seriesLoiNhuan.DataSource = data;
+
+            chartControl.Series.Add(seriesLoiNhuan);
+
+            // Thêm tiêu đề cho biểu đồ
+            ChartTitle chartTitle = new ChartTitle();
+            chartTitle.Text = chartTitleText;
+            chartControl.Titles.Add(chartTitle);
+
+            // Tùy chỉnh Diagram (XYDiagram cho biểu đồ cột)
+            XYDiagram diagram = chartControl.Diagram as XYDiagram;
+            if (diagram != null)
+            {
+                diagram.AxisX.Title.Text = "Mặt Hàng";
+                diagram.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                diagram.AxisX.Label.TextPattern = "{A}"; // {A} là Argument (Tên mặt hàng)
+                diagram.AxisX.Label.ResolveOverlappingOptions.AllowHide = false;
+                diagram.AxisX.Label.ResolveOverlappingOptions.AllowRotate = true;
+                diagram.AxisX.Label.ResolveOverlappingOptions.AllowStagger = true;
+                diagram.AxisX.Label.Angle = 30; // Nghiêng nhãn trục X nếu tên mặt hàng dài
+
+                diagram.AxisY.Title.Text = "Lợi Nhuận (VNĐ)";
+                diagram.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                diagram.AxisY.Label.TextPattern = "{V:N0}"; // {V} là Value, N0 là định dạng số không có phần thập phân
+
+                // Tùy chọn: Cho phép màu khác nhau cho cột âm và dương
+                chartControl.CustomDrawSeriesPoint += ChartControl_LoiNhuan_CustomDrawSeriesPoint;
+            }
+
+            // Tùy chỉnh Chú giải (Legend)
+            chartControl.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True; // Hiển thị chú giải
+            chartControl.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Right;
+
+            // Tùy chỉnh giao diện của Series cột (BarSeriesView)
+            BarSeriesView barView = seriesLoiNhuan.View as BarSeriesView;
+            if (barView != null)
+            {
+                // barView.BarWidth = 0.8; // Điều chỉnh độ rộng của cột
+                // Không nên dùng ColorEach = true cho loại biểu đồ này,
+                // vì màu sắc nên thể hiện lãi/lỗ thay vì mỗi cột một màu ngẫu nhiên.
+            }
+        }
+
+        // Hàm tùy chỉnh màu sắc cho cột lợi nhuận âm/dương
+        private void ChartControl_LoiNhuan_CustomDrawSeriesPoint(object sender, CustomDrawSeriesPointEventArgs e)
+        {
+            // Chỉ áp dụng cho series "Lợi Nhuận" (nếu có nhiều series khác)
+            // if (e.Series.Name != "Lợi Nhuận") return;
+
+            double value = e.SeriesPoint.Values[0]; // Giá trị lợi nhuận
+            BarDrawOptions drawOptions = e.SeriesDrawOptions as BarDrawOptions;
+            if (drawOptions == null) return;
+
+            if (value < 0)
+            {
+                // Màu cho lợi nhuận âm (lỗ) - ví dụ: màu đỏ nhạt
+                drawOptions.Color = Color.FromArgb(255, 102, 102); // Hoặc Color.IndianRed
+            }
+            else
+            {
+                // Màu cho lợi nhuận dương (lãi) - ví dụ: màu xanh lá cây nhạt
+                drawOptions.Color = Color.FromArgb(96, 181, 201); // Hoặc Color.LightGreen
+            }
         }
         private void PopulateDoughnutChart(ChartControl chart, List<MatHangThongKe> dataSource, string chartTitleText)
         {
@@ -686,55 +773,60 @@ namespace BTLtest2
             chartControlLoiNhuan.Visible = false;
 
         }
-        private void dataloinguan()
+        private void dataloinhuan()
         {
             DateTime fromDate = datestart.Value;
             DateTime toDate = dateend.Value;
 
-            // Biến cho việc lọc tổng doanh thu / tổng chi phí (nếu có) từ tongdt.Text
-            float doanhThuMinFilterForTotals = 0;
-            float chiPhiMinFilterForTotals = 0;
-
-            // Lấy giá trị từ ô nhập tongdt.Text, nếu không hợp lệ thì gán 0
-            // Code gốc của bạn dùng tongdt.Text cho cả hai, nên chúng sẽ có cùng giá trị.
-            if (!float.TryParse(tongdt.Text, out doanhThuMinFilterForTotals))
+            // --- Phần tính toán LỢI NHUẬN TỔNG cho Label (giữ nguyên logic lọc tổng của bạn) ---
+            float tongFilterValue = 0; // Giá trị lọc cho tổng doanh thu/chi phí từ tongdt.Text
+            if (!float.TryParse(tongdt.Text, out tongFilterValue))
             {
-                doanhThuMinFilterForTotals = 0; // Mặc định nếu không nhập hoặc không hợp lệ
+                tongFilterValue = 0; // Mặc định nếu không nhập hoặc không hợp lệ
             }
-            chiPhiMinFilterForTotals = doanhThuMinFilterForTotals; // Gán giá trị tương tự cho chiPhiMinFilter
 
-            // --- Phần tính toán LỢI NHUẬN TỔNG cho Label ---
-            // Lấy dữ liệu tổng doanh thu và tổng chi phí (dựa trên các hàm GetDoanhThu/GetChiPhi tổng)
-            var overallRevenueData = baocaodoanhthu.GetDoanhThu(fromDate, toDate, doanhThuMinFilterForTotals);
-            var overallChiPhiData = baocaochiphi.GetChiPhi(fromDate, toDate, chiPhiMinFilterForTotals);
+            // Lấy dữ liệu tổng doanh thu và tổng chi phí (đã áp dụng bộ lọc tongFilterValue)
+            var overallRevenueData = baocaodoanhthu.GetDoanhThu(fromDate, toDate, tongFilterValue);
+            var overallChiPhiData = baocaochiphi.GetChiPhi(fromDate, toDate, tongFilterValue);
 
-            // Tính tổng doanh thu và tổng chi phí
             float tongDoanhThu = overallRevenueData?.Sum(dt => dt.TongTien) ?? 0;
             float tongChiPhi = overallChiPhiData?.Sum(cp => cp.TongTien) ?? 0;
-
-            // Tính lợi nhuận tổng
             float loiNhuanTong = tongDoanhThu - tongChiPhi;
-
-            // Hiển thị lợi nhuận tổng lên label
             lbtongdoangthu.Text = $"Lợi nhuận Tổng: {loiNhuanTong:N0} VNĐ";
 
-            // --- Phần tạo và hiển thị BÁO CÁO LỢI NHUẬN CHI TIẾT cho DataGridView ---
-            // 1. Lấy dữ liệu doanh thu theo từng mặt hàng
+            // --- Phần tạo và hiển thị BÁO CÁO LỢI NHUẬN CHI TIẾT cho DataGridView và Chart ---
             List<MatHangThongKe> doanhThuTheoMatHang = thongkedoanhthu.GetDoanhThuTheoMatHang(fromDate, toDate) ?? new List<MatHangThongKe>();
-
-            // 2. Lấy dữ liệu chi phí theo từng mặt hàng
             List<MatHangThongKe> chiPhiTheoMatHang = thongkechiphi.GetChiPhiTheoMatHang(fromDate, toDate) ?? new List<MatHangThongKe>();
+            List<MatHangThongKe> loiNhuanReportDataFull = CalculateLoiNhuanTheoMatHang(doanhThuTheoMatHang, chiPhiTheoMatHang);
 
-            // 3. Tính toán lợi nhuận theo từng mặt hàng (sử dụng hàm CalculateLoiNhuanTheoMatHang đã có)
-            // Đây chính là "function báo cáo lợi nhuận" cho phần dữ liệu chi tiết.
-            List<MatHangThongKe> loiNhuanReportData = CalculateLoiNhuanTheoMatHang(doanhThuTheoMatHang, chiPhiTheoMatHang);
+            // << THAY ĐỔI: Áp dụng bộ lọc từ tongdt.Text cho danh sách lợi nhuận chi tiết >>
+            List<MatHangThongKe> loiNhuanReportDataFiltered = loiNhuanReportDataFull; // Mặc định là danh sách đầy đủ
+            float itemProfitFilterValue = 0;
+            bool applyItemProfitFilter = false;
 
-            // 4. Hiển thị báo cáo lợi nhuận chi tiết trong DataGridView
-            dataGridView1.DataSource = loiNhuanReportData;
+            if (!string.IsNullOrWhiteSpace(tongdt.Text))
+            {
+                if (float.TryParse(tongdt.Text, out itemProfitFilterValue))
+                {
+                    applyItemProfitFilter = true;
+                }
+                else
+                {
+                    // Tùy chọn: Thông báo cho người dùng nếu giá trị lọc không hợp lệ
+                    // MessageBox.Show("Giá trị lọc trong ô 'Tổng' không hợp lệ. Sẽ hiển thị tất cả lợi nhuận mặt hàng.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
 
-            // 5. (Tùy chọn) Tùy chỉnh hiển thị cột cho DataGridView để rõ ràng hơn
-            // Đảm bảo rằng các tên cột "TenMatHang" và "GiaTri" tồn tại trong MatHangThongKe
-            // và được DataGridView tự động tạo ra.
+            if (applyItemProfitFilter)
+            {
+                // Lọc những mặt hàng có lợi nhuận (GiaTri) >= giá trị lọc
+                // Bạn có thể thay đổi điều kiện lọc (ví dụ: <=, ==, hoặc phức tạp hơn) nếu cần
+                loiNhuanReportDataFiltered = loiNhuanReportDataFull.Where(item => item.GiaTri >= itemProfitFilterValue).ToList();
+            }
+            // << KẾT THÚC THAY ĐỔI >>
+
+            dataGridView1.DataSource = loiNhuanReportDataFiltered;
+
             try
             {
                 if (dataGridView1.Columns["TenMatHang"] != null)
@@ -744,19 +836,16 @@ namespace BTLtest2
                 if (dataGridView1.Columns["GiaTri"] != null)
                 {
                     dataGridView1.Columns["GiaTri"].HeaderText = "Lợi Nhuận (VNĐ)";
-                    dataGridView1.Columns["GiaTri"].DefaultCellStyle.Format = "N0"; // Định dạng số cho dễ đọc
+                    dataGridView1.Columns["GiaTri"].DefaultCellStyle.Format = "N0";
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý nếu cột không tồn tại, ví dụ: ghi log
                 Console.WriteLine("Lỗi khi đặt HeaderText cho cột DataGridView: " + ex.Message);
             }
 
-            // Tải và hiển thị biểu đồ lợi nhuận
-            // Lưu ý: LoadLoiNhuanChart hiện tại sẽ tự lấy lại dữ liệu doanh thu/chi phí theo mặt hàng và tính toán lại.
-            // Để tối ưu, bạn có thể sửa LoadLoiNhuanChart để nhận loiNhuanReportData làm tham số.
-            LoadLoiNhuanChart(fromDate, toDate);
+            // Truyền danh sách lợi nhuận ĐÃ LỌC vào LoadLoiNhuanChart
+            LoadLoiNhuanChart(loiNhuanReportDataFiltered);
 
             chartControlDoanhThu.Visible = false;
             chartControlChiPhi.Visible = false;

@@ -239,19 +239,19 @@ namespace BTLtest2
             // Không cần gọi LoadData() một lần nữa ở ngoài cùng.
 
         }
-
+           
         private void btnXoa_Click(object sender, EventArgs e)
         {
             string MaSach = txtMasach.Text;
             if (string.IsNullOrEmpty(MaSach))
             {
-                MessageBox.Show("Vui lòng chọn hàng hóa để sửa");
+                MessageBox.Show("Vui lòng chọn hàng hóa để xóa");
             }
             else
             {
                 functionqlykho.DeleteSach(MaSach);
                 LoadData();
-                MessageBox.Show("Thêm hàng hóa thành công");
+                MessageBox.Show("Xóa hàng hóa thành công");
                 ClearAllControls(this); // 'this' là Form1
             }
             LoadData();
