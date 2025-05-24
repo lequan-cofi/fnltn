@@ -33,6 +33,9 @@ namespace BTLtest2
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             this.panelchillform = new System.Windows.Forms.Panel();
+            this.submenuhoadon = new System.Windows.Forms.Panel();
+            this.bnthdmua = new System.Windows.Forms.Button();
+            this.bnthdban = new System.Windows.Forms.Button();
             this.submenubaocao = new System.Windows.Forms.Panel();
             this.bnthanghoa = new System.Windows.Forms.Button();
             this.bnthangtonkho = new System.Windows.Forms.Button();
@@ -53,17 +56,10 @@ namespace BTLtest2
             this.bntqlynhanvien = new System.Windows.Forms.Button();
             this.bntqlysach = new System.Windows.Forms.Button();
             this.bnt_trangchu = new System.Windows.Forms.Button();
-            this.submenuhoadon = new System.Windows.Forms.Panel();
-            this.bnthdban = new System.Windows.Forms.Button();
-<<<<<<< HEAD
-            this.bnthdmua = new System.Windows.Forms.Button();
-=======
-            this.bnthdnhap = new System.Windows.Forms.Button();
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.panelchillform.SuspendLayout();
+            this.submenuhoadon.SuspendLayout();
             this.submenubaocao.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.submenuhoadon.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelchillform
@@ -74,9 +70,46 @@ namespace BTLtest2
             this.panelchillform.Controls.Add(this.submenubaocao);
             this.panelchillform.Location = new System.Drawing.Point(189, 95);
             this.panelchillform.Name = "panelchillform";
-            this.panelchillform.Size = new System.Drawing.Size(765, 537);
-            this.panelchillform.TabIndex = 28;
-            this.panelchillform.Paint += new System.Windows.Forms.PaintEventHandler(this.panelchillform_Paint);
+            this.panelchillform.Size = new System.Drawing.Size(533, 391);
+            this.panelchillform.TabIndex = 0;
+            this.panelchillform.Paint += new System.Windows.Forms.PaintEventHandler(this.penicilliform_Paint);
+            // 
+            // submenuhoadon
+            // 
+            this.submenuhoadon.Controls.Add(this.bnthdmua);
+            this.submenuhoadon.Controls.Add(this.bnthdban);
+            this.submenuhoadon.Location = new System.Drawing.Point(8, 171);
+            this.submenuhoadon.Name = "submenuhoadon";
+            this.submenuhoadon.Size = new System.Drawing.Size(389, 91);
+            this.submenuhoadon.TabIndex = 1;
+            // 
+            // bnthdmua
+            // 
+            this.bnthdmua.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnthdmua.FlatAppearance.BorderSize = 0;
+            this.bnthdmua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnthdmua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnthdmua.Location = new System.Drawing.Point(191, 16);
+            this.bnthdmua.Name = "bnthdmua";
+            this.bnthdmua.Size = new System.Drawing.Size(134, 58);
+            this.bnthdmua.TabIndex = 13;
+            this.bnthdmua.Text = "Hoá đơn mua";
+            this.bnthdmua.UseVisualStyleBackColor = false;
+            this.bnthdmua.Click += new System.EventHandler(this.bnthdmua_Click);
+            // 
+            // bnthdban
+            // 
+            this.bnthdban.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnthdban.FlatAppearance.BorderSize = 0;
+            this.bnthdban.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnthdban.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnthdban.Location = new System.Drawing.Point(9, 13);
+            this.bnthdban.Name = "bnthdban";
+            this.bnthdban.Size = new System.Drawing.Size(134, 58);
+            this.bnthdban.TabIndex = 12;
+            this.bnthdban.Text = "Hoá đơn bán";
+            this.bnthdban.UseVisualStyleBackColor = false;
+            this.bnthdban.Click += new System.EventHandler(this.bnthdban_Click);
             // 
             // submenubaocao
             // 
@@ -86,12 +119,8 @@ namespace BTLtest2
             this.submenubaocao.Controls.Add(this.bntchiphi);
             this.submenubaocao.Controls.Add(this.bnt_loinhuan);
             this.submenubaocao.Controls.Add(this.bntdtcpln);
-<<<<<<< HEAD
             this.submenubaocao.Location = new System.Drawing.Point(7, 208);
-=======
-            this.submenubaocao.Location = new System.Drawing.Point(19, 201);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
-            this.submenubaocao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.submenubaocao.Margin = new System.Windows.Forms.Padding(2);
             this.submenubaocao.Name = "submenubaocao";
             this.submenubaocao.Size = new System.Drawing.Size(524, 181);
             this.submenubaocao.TabIndex = 0;
@@ -108,10 +137,7 @@ namespace BTLtest2
             this.bnthanghoa.TabIndex = 11;
             this.bnthanghoa.Text = "Hàng hoá";
             this.bnthanghoa.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bnthanghoa.Click += new System.EventHandler(this.bnthanghoa_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // bnthangtonkho
             // 
@@ -125,10 +151,7 @@ namespace BTLtest2
             this.bnthangtonkho.TabIndex = 10;
             this.bnthangtonkho.Text = "Hàng tồn kho ";
             this.bnthangtonkho.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bnthangtonkho.Click += new System.EventHandler(this.bnthangtonkho_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // bntkhachhang
             // 
@@ -142,10 +165,7 @@ namespace BTLtest2
             this.bntkhachhang.TabIndex = 9;
             this.bntkhachhang.Text = "Khách hàng";
             this.bntkhachhang.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bntkhachhang.Click += new System.EventHandler(this.bntkhachhang_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // bntchiphi
             // 
@@ -159,10 +179,7 @@ namespace BTLtest2
             this.bntchiphi.TabIndex = 8;
             this.bntchiphi.Text = "Chi phí";
             this.bntchiphi.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bntchiphi.Click += new System.EventHandler(this.bntchiphi_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // bnt_loinhuan
             // 
@@ -176,10 +193,7 @@ namespace BTLtest2
             this.bnt_loinhuan.TabIndex = 7;
             this.bnt_loinhuan.Text = "Lợi nhuận";
             this.bnt_loinhuan.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bnt_loinhuan.Click += new System.EventHandler(this.bnt_loinhuan_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // bntdtcpln
             // 
@@ -187,20 +201,13 @@ namespace BTLtest2
             this.bntdtcpln.FlatAppearance.BorderSize = 0;
             this.bntdtcpln.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntdtcpln.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.bntdtcpln.Location = new System.Drawing.Point(15, 16);
-=======
-            this.bntdtcpln.Location = new System.Drawing.Point(10, 21);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.bntdtcpln.Name = "bntdtcpln";
             this.bntdtcpln.Size = new System.Drawing.Size(134, 58);
             this.bntdtcpln.TabIndex = 6;
             this.bntdtcpln.Text = "Danh thu";
             this.bntdtcpln.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             this.bntdtcpln.Click += new System.EventHandler(this.bntdtcpln_Click);
-=======
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             // 
             // Logo
             // 
@@ -255,6 +262,7 @@ namespace BTLtest2
             this.bntdangxuat.TabIndex = 24;
             this.bntdangxuat.Text = "Đăng xuất";
             this.bntdangxuat.UseVisualStyleBackColor = false;
+            this.bntdangxuat.Click += new System.EventHandler(this.bntdangxuat_Click);
             // 
             // bntthanhtoan
             // 
@@ -263,11 +271,7 @@ namespace BTLtest2
             this.bntthanhtoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntthanhtoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntthanhtoan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-<<<<<<< HEAD
             this.bntthanhtoan.Location = new System.Drawing.Point(21, 364);
-=======
-            this.bntthanhtoan.Location = new System.Drawing.Point(20, 363);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.bntthanhtoan.Name = "bntthanhtoan";
             this.bntthanhtoan.Size = new System.Drawing.Size(163, 34);
             this.bntthanhtoan.TabIndex = 23;
@@ -298,11 +302,7 @@ namespace BTLtest2
             this.bnttimkiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnttimkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnttimkiem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-<<<<<<< HEAD
             this.bnttimkiem.Location = new System.Drawing.Point(21, 403);
-=======
-            this.bnttimkiem.Location = new System.Drawing.Point(20, 402);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.bnttimkiem.Name = "bnttimkiem";
             this.bnttimkiem.Size = new System.Drawing.Size(163, 34);
             this.bnttimkiem.TabIndex = 21;
@@ -316,11 +316,7 @@ namespace BTLtest2
             this.bntbaocao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntbaocao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntbaocao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-<<<<<<< HEAD
             this.bntbaocao.Location = new System.Drawing.Point(21, 323);
-=======
-            this.bntbaocao.Location = new System.Drawing.Point(20, 322);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.bntbaocao.Name = "bntbaocao";
             this.bntbaocao.Size = new System.Drawing.Size(163, 34);
             this.bntbaocao.TabIndex = 20;
@@ -335,11 +331,7 @@ namespace BTLtest2
             this.bnthoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnthoadon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnthoadon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-<<<<<<< HEAD
             this.bnthoadon.Location = new System.Drawing.Point(21, 284);
-=======
-            this.bnthoadon.Location = new System.Drawing.Point(20, 283);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
             this.bnthoadon.Name = "bnthoadon";
             this.bnthoadon.Size = new System.Drawing.Size(163, 34);
             this.bnthoadon.TabIndex = 19;
@@ -394,76 +386,6 @@ namespace BTLtest2
             this.bnt_trangchu.Text = "Trang Chủ";
             this.bnt_trangchu.UseVisualStyleBackColor = false;
             // 
-            // submenuhoadon
-            // 
-<<<<<<< HEAD
-            this.submenuhoadon.Controls.Add(this.bnthdmua);
-            this.submenuhoadon.Controls.Add(this.bnthdban);
-            this.submenuhoadon.Location = new System.Drawing.Point(8, 171);
-            this.submenuhoadon.Name = "submenuhoadon";
-            this.submenuhoadon.Size = new System.Drawing.Size(389, 91);
-            this.submenuhoadon.TabIndex = 1;
-=======
-            this.submenuhoadon.Controls.Add(this.bnthdban);
-            this.submenuhoadon.Controls.Add(this.bnthdnhap);
-            this.submenuhoadon.Location = new System.Drawing.Point(19, 111);
-            this.submenuhoadon.Margin = new System.Windows.Forms.Padding(2);
-            this.submenuhoadon.Name = "submenuhoadon";
-            this.submenuhoadon.Size = new System.Drawing.Size(162, 181);
-            this.submenuhoadon.TabIndex = 12;
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
-            // 
-            // bnthdban
-            // 
-            this.bnthdban.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.bnthdban.FlatAppearance.BorderSize = 0;
-            this.bnthdban.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnthdban.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.bnthdban.Location = new System.Drawing.Point(9, 13);
-            this.bnthdban.Name = "bnthdban";
-            this.bnthdban.Size = new System.Drawing.Size(134, 58);
-            this.bnthdban.TabIndex = 12;
-=======
-            this.bnthdban.Location = new System.Drawing.Point(10, 96);
-            this.bnthdban.Name = "bnthdban";
-            this.bnthdban.Size = new System.Drawing.Size(139, 57);
-            this.bnthdban.TabIndex = 9;
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
-            this.bnthdban.Text = "Hoá đơn bán";
-            this.bnthdban.UseVisualStyleBackColor = false;
-            this.bnthdban.Click += new System.EventHandler(this.bnthdban_Click);
-            // 
-<<<<<<< HEAD
-            // bnthdmua
-            // 
-            this.bnthdmua.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.bnthdmua.FlatAppearance.BorderSize = 0;
-            this.bnthdmua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnthdmua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnthdmua.Location = new System.Drawing.Point(191, 16);
-            this.bnthdmua.Name = "bnthdmua";
-            this.bnthdmua.Size = new System.Drawing.Size(134, 58);
-            this.bnthdmua.TabIndex = 13;
-            this.bnthdmua.Text = "Hoá đơn mua";
-            this.bnthdmua.UseVisualStyleBackColor = false;
-            this.bnthdmua.Click += new System.EventHandler(this.bnthdmua_Click);
-=======
-            // bnthdnhap
-            // 
-            this.bnthdnhap.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.bnthdnhap.FlatAppearance.BorderSize = 0;
-            this.bnthdnhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnthdnhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnthdnhap.Location = new System.Drawing.Point(10, 21);
-            this.bnthdnhap.Name = "bnthdnhap";
-            this.bnthdnhap.Size = new System.Drawing.Size(134, 58);
-            this.bnthdnhap.TabIndex = 6;
-            this.bnthdnhap.Text = "Hoá đơn nhập";
-            this.bnthdnhap.UseVisualStyleBackColor = false;
-            this.bnthdnhap.Click += new System.EventHandler(this.bnthdnhap_Click);
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
-            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,29 +405,28 @@ namespace BTLtest2
             this.Controls.Add(this.bntqlysach);
             this.Controls.Add(this.bnt_trangchu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "home";
             this.Text = "home";
             this.Load += new System.EventHandler(this.home_Load);
             this.panelchillform.ResumeLayout(false);
+            this.submenuhoadon.ResumeLayout(false);
             this.submenubaocao.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.submenuhoadon.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private void home_Load(object sender, EventArgs e)
+        private void penicilliform_Paint(object sender, PaintEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
-        private void panelchillform_Paint(object sender, PaintEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        private void Home_Load(object sender, EventArgs e) => throw new NotImplementedException();
+
+        
 
         #endregion
 
@@ -532,10 +453,6 @@ namespace BTLtest2
         private System.Windows.Forms.Button bntdtcpln;
         private System.Windows.Forms.Panel submenuhoadon;
         private System.Windows.Forms.Button bnthdban;
-<<<<<<< HEAD
         private System.Windows.Forms.Button bnthdmua;
-=======
-        private System.Windows.Forms.Button bnthdnhap;
->>>>>>> 64a212e03026b8bd7607b2b034398236d6bc3be2
     }
 }

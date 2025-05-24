@@ -30,281 +30,354 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.bnt_trangchu = new System.Windows.Forms.Button();
-            this.bntqlysach = new System.Windows.Forms.Button();
-            this.bntqlynhanvien = new System.Windows.Forms.Button();
-            this.bnthoadon = new System.Windows.Forms.Button();
-            this.bntbaocao = new System.Windows.Forms.Button();
-            this.bnttimkiem = new System.Windows.Forms.Button();
-            this.bnt_quanlykhachhang = new System.Windows.Forms.Button();
-            this.bntthanhtoan = new System.Windows.Forms.Button();
-            this.bntdangxuat = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Logo = new System.Windows.Forms.Panel();
-            this.panelchillform = new System.Windows.Forms.Panel();
+            this.lbusername = new System.Windows.Forms.Label();
+            this.lbRole = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.bnt_qlysach = new System.Windows.Forms.Button();
+            this.bnt_qlnhanvien = new System.Windows.Forms.Button();
+            this.bnt_qlkhach = new System.Windows.Forms.Button();
+            this.bnt_hoadon = new System.Windows.Forms.Button();
+            this.bnt_baocao = new System.Windows.Forms.Button();
+            this.bnt_thanhtoan = new System.Windows.Forms.Button();
+            this.bnt_thoat = new System.Windows.Forms.Button();
+            this.chllform = new System.Windows.Forms.Panel();
+            this.sub_menuhd = new System.Windows.Forms.Panel();
+            this.bnt_hdban = new System.Windows.Forms.Button();
+            this.bnt_hdnhap = new System.Windows.Forms.Button();
+            this.sub_menubaocao = new System.Windows.Forms.Panel();
+            this.bnt_htk = new System.Windows.Forms.Button();
+            this.bnt_kh = new System.Windows.Forms.Button();
+            this.bnt_dt = new System.Windows.Forms.Button();
+            this.bnt_quanlynhacc = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.chllform.SuspendLayout();
+            this.sub_menuhd.SuspendLayout();
+            this.sub_menubaocao.SuspendLayout();
             this.SuspendLayout();
             // 
             // bnt_trangchu
             // 
-            this.bnt_trangchu.BackColor = System.Drawing.Color.MidnightBlue;
+            this.bnt_trangchu.BackColor = System.Drawing.Color.LightSteelBlue;
             this.bnt_trangchu.FlatAppearance.BorderSize = 0;
             this.bnt_trangchu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnt_trangchu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnt_trangchu.ForeColor = System.Drawing.SystemColors.Control;
-            this.bnt_trangchu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bnt_trangchu.Location = new System.Drawing.Point(-4, 200);
-            this.bnt_trangchu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bnt_trangchu.Location = new System.Drawing.Point(29, 140);
             this.bnt_trangchu.Name = "bnt_trangchu";
-            this.bnt_trangchu.Size = new System.Drawing.Size(244, 52);
+            this.bnt_trangchu.Size = new System.Drawing.Size(154, 39);
             this.bnt_trangchu.TabIndex = 0;
-            this.bnt_trangchu.Text = "Trang Chủ";
+            this.bnt_trangchu.Text = "Trang chủ";
             this.bnt_trangchu.UseVisualStyleBackColor = false;
-            this.bnt_trangchu.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // bntqlysach
-            // 
-            this.bntqlysach.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bntqlysach.FlatAppearance.BorderSize = 0;
-            this.bntqlysach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntqlysach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntqlysach.ForeColor = System.Drawing.SystemColors.Control;
-            this.bntqlysach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntqlysach.Location = new System.Drawing.Point(-4, 262);
-            this.bntqlysach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bntqlysach.Name = "bntqlysach";
-            this.bntqlysach.Size = new System.Drawing.Size(244, 52);
-            this.bntqlysach.TabIndex = 1;
-            this.bntqlysach.Text = "Quản lý sách";
-            this.bntqlysach.UseVisualStyleBackColor = false;
-            // 
-            // bntqlynhanvien
-            // 
-            this.bntqlynhanvien.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bntqlynhanvien.FlatAppearance.BorderSize = 0;
-            this.bntqlynhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntqlynhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntqlynhanvien.ForeColor = System.Drawing.SystemColors.Control;
-            this.bntqlynhanvien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntqlynhanvien.Location = new System.Drawing.Point(-4, 323);
-            this.bntqlynhanvien.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bntqlynhanvien.Name = "bntqlynhanvien";
-            this.bntqlynhanvien.Size = new System.Drawing.Size(244, 52);
-            this.bntqlynhanvien.TabIndex = 2;
-            this.bntqlynhanvien.Text = "Quản lý nhân viên";
-            this.bntqlynhanvien.UseVisualStyleBackColor = false;
-            this.bntqlynhanvien.Click += new System.EventHandler(this.bntqlynhanvien_Click);
-            // 
-            // bnthoadon
-            // 
-            this.bnthoadon.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bnthoadon.FlatAppearance.BorderSize = 0;
-            this.bnthoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnthoadon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnthoadon.ForeColor = System.Drawing.SystemColors.Control;
-            this.bnthoadon.Location = new System.Drawing.Point(-4, 508);
-            this.bnthoadon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bnthoadon.Name = "bnthoadon";
-            this.bnthoadon.Size = new System.Drawing.Size(244, 52);
-            this.bnthoadon.TabIndex = 3;
-            this.bnthoadon.Text = "Hoá đơn";
-            this.bnthoadon.UseVisualStyleBackColor = false;
-            // 
-            // bntbaocao
-            // 
-            this.bntbaocao.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bntbaocao.FlatAppearance.BorderSize = 0;
-            this.bntbaocao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntbaocao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntbaocao.ForeColor = System.Drawing.SystemColors.Control;
-            this.bntbaocao.Location = new System.Drawing.Point(-4, 569);
-            this.bntbaocao.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bntbaocao.Name = "bntbaocao";
-            this.bntbaocao.Size = new System.Drawing.Size(244, 52);
-            this.bntbaocao.TabIndex = 4;
-            this.bntbaocao.Text = "Báo cáo";
-            this.bntbaocao.UseVisualStyleBackColor = false;
-            this.bntbaocao.Click += new System.EventHandler(this.bntbaocao_Click);
-            // 
-            // bnttimkiem
-            // 
-            this.bnttimkiem.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bnttimkiem.FlatAppearance.BorderSize = 0;
-            this.bnttimkiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnttimkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnttimkiem.ForeColor = System.Drawing.SystemColors.Control;
-            this.bnttimkiem.Location = new System.Drawing.Point(-4, 692);
-            this.bnttimkiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bnttimkiem.Name = "bnttimkiem";
-            this.bnttimkiem.Size = new System.Drawing.Size(244, 52);
-            this.bnttimkiem.TabIndex = 5;
-            this.bnttimkiem.Text = "Tìm kiếm";
-            this.bnttimkiem.UseVisualStyleBackColor = false;
-            // 
-            // bnt_quanlykhachhang
-            // 
-            this.bnt_quanlykhachhang.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bnt_quanlykhachhang.FlatAppearance.BorderSize = 0;
-            this.bnt_quanlykhachhang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnt_quanlykhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnt_quanlykhachhang.ForeColor = System.Drawing.SystemColors.Control;
-            this.bnt_quanlykhachhang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bnt_quanlykhachhang.Location = new System.Drawing.Point(-4, 385);
-            this.bnt_quanlykhachhang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bnt_quanlykhachhang.Name = "bnt_quanlykhachhang";
-            this.bnt_quanlykhachhang.Size = new System.Drawing.Size(244, 52);
-            this.bnt_quanlykhachhang.TabIndex = 6;
-            this.bnt_quanlykhachhang.Text = "Quản lý khách hàng";
-            this.bnt_quanlykhachhang.UseVisualStyleBackColor = false;
-            // 
-            // bntthanhtoan
-            // 
-            this.bntthanhtoan.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bntthanhtoan.FlatAppearance.BorderSize = 0;
-            this.bntthanhtoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntthanhtoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntthanhtoan.ForeColor = System.Drawing.SystemColors.Control;
-            this.bntthanhtoan.Location = new System.Drawing.Point(-4, 631);
-            this.bntthanhtoan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bntthanhtoan.Name = "bntthanhtoan";
-            this.bntthanhtoan.Size = new System.Drawing.Size(244, 52);
-            this.bntthanhtoan.TabIndex = 7;
-            this.bntthanhtoan.Text = "Thanh Toán";
-            this.bntthanhtoan.UseVisualStyleBackColor = false;
-            // 
-            // bntdangxuat
-            // 
-            this.bntdangxuat.BackColor = System.Drawing.Color.MidnightBlue;
-            this.bntdangxuat.FlatAppearance.BorderSize = 0;
-            this.bntdangxuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntdangxuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntdangxuat.ForeColor = System.Drawing.SystemColors.Control;
-            this.bntdangxuat.Location = new System.Drawing.Point(-4, 851);
-            this.bntdangxuat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bntdangxuat.Name = "bntdangxuat";
-            this.bntdangxuat.Size = new System.Drawing.Size(244, 52);
-            this.bntdangxuat.TabIndex = 8;
-            this.bntdangxuat.Text = "Đăng xuất";
-            this.bntdangxuat.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(-4, 446);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(244, 52);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Tìm kiếm";
-            this.button1.UseVisualStyleBackColor = false;
+            this.bnt_trangchu.Click += new System.EventHandler(this.bnt_trangchu_Click);
             // 
             // panel1
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(219, 22);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Controls.Add(this.lbusername);
+            this.panel1.Controls.Add(this.lbRole);
+            this.panel1.Location = new System.Drawing.Point(159, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(975, 122);
-            this.panel1.TabIndex = 13;
+            this.panel1.Size = new System.Drawing.Size(687, 79);
+            this.panel1.TabIndex = 3;
             // 
-            // textBox1
+            // lbusername
             // 
-            this.textBox1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(522, 52);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(318, 33);
-            this.textBox1.TabIndex = 1;
+            this.lbusername.AutoSize = true;
+            this.lbusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbusername.Location = new System.Drawing.Point(484, 32);
+            this.lbusername.Name = "lbusername";
+            this.lbusername.Size = new System.Drawing.Size(76, 18);
+            this.lbusername.TabIndex = 21;
+            this.lbusername.Text = "usename";
             // 
-            // label1
+            // lbRole
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 52);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Quản lý";
+            this.lbRole.AutoSize = true;
+            this.lbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRole.Location = new System.Drawing.Point(59, 32);
+            this.lbRole.Name = "lbRole";
+            this.lbRole.Size = new System.Drawing.Size(87, 18);
+            this.lbRole.TabIndex = 20;
+            this.lbRole.Text = "Phân quền";
+            this.lbRole.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Logo
+            // panel2
             // 
-            this.Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logo.BackgroundImage")));
-            this.Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.Logo.Location = new System.Drawing.Point(6, 20);
-            this.Logo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(204, 165);
-            this.Logo.TabIndex = 14;
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.Location = new System.Drawing.Point(29, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(95, 91);
+            this.panel2.TabIndex = 4;
             // 
-            // panelchillform
+            // bnt_qlysach
             // 
-            this.panelchillform.AutoSize = true;
-            this.panelchillform.Location = new System.Drawing.Point(224, 155);
-            this.panelchillform.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panelchillform.Name = "panelchillform";
-            this.panelchillform.Size = new System.Drawing.Size(969, 826);
-            this.panelchillform.TabIndex = 15;
+            this.bnt_qlysach.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_qlysach.FlatAppearance.BorderSize = 0;
+            this.bnt_qlysach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_qlysach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_qlysach.Location = new System.Drawing.Point(29, 185);
+            this.bnt_qlysach.Name = "bnt_qlysach";
+            this.bnt_qlysach.Size = new System.Drawing.Size(154, 39);
+            this.bnt_qlysach.TabIndex = 5;
+            this.bnt_qlysach.Text = "Quản lý sách";
+            this.bnt_qlysach.UseVisualStyleBackColor = false;
+            this.bnt_qlysach.Click += new System.EventHandler(this.bnt_qlysach_Click);
+            // 
+            // bnt_qlnhanvien
+            // 
+            this.bnt_qlnhanvien.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_qlnhanvien.FlatAppearance.BorderSize = 0;
+            this.bnt_qlnhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_qlnhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_qlnhanvien.Location = new System.Drawing.Point(29, 230);
+            this.bnt_qlnhanvien.Name = "bnt_qlnhanvien";
+            this.bnt_qlnhanvien.Size = new System.Drawing.Size(154, 39);
+            this.bnt_qlnhanvien.TabIndex = 6;
+            this.bnt_qlnhanvien.Text = "Quản lý nhân viên";
+            this.bnt_qlnhanvien.UseVisualStyleBackColor = false;
+            this.bnt_qlnhanvien.Click += new System.EventHandler(this.bnt_qlnhanvien_Click);
+            // 
+            // bnt_qlkhach
+            // 
+            this.bnt_qlkhach.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_qlkhach.FlatAppearance.BorderSize = 0;
+            this.bnt_qlkhach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_qlkhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_qlkhach.Location = new System.Drawing.Point(29, 275);
+            this.bnt_qlkhach.Name = "bnt_qlkhach";
+            this.bnt_qlkhach.Size = new System.Drawing.Size(154, 39);
+            this.bnt_qlkhach.TabIndex = 7;
+            this.bnt_qlkhach.Text = "Quản lý khách";
+            this.bnt_qlkhach.UseVisualStyleBackColor = false;
+            this.bnt_qlkhach.Click += new System.EventHandler(this.bnt_qlkhach_Click);
+            // 
+            // bnt_hoadon
+            // 
+            this.bnt_hoadon.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_hoadon.FlatAppearance.BorderSize = 0;
+            this.bnt_hoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_hoadon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_hoadon.Location = new System.Drawing.Point(29, 320);
+            this.bnt_hoadon.Name = "bnt_hoadon";
+            this.bnt_hoadon.Size = new System.Drawing.Size(154, 39);
+            this.bnt_hoadon.TabIndex = 8;
+            this.bnt_hoadon.Text = "Hoá đơn";
+            this.bnt_hoadon.UseVisualStyleBackColor = false;
+            this.bnt_hoadon.Click += new System.EventHandler(this.bnt_hoadon_Click);
+            // 
+            // bnt_baocao
+            // 
+            this.bnt_baocao.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_baocao.FlatAppearance.BorderSize = 0;
+            this.bnt_baocao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_baocao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_baocao.Location = new System.Drawing.Point(29, 410);
+            this.bnt_baocao.Name = "bnt_baocao";
+            this.bnt_baocao.Size = new System.Drawing.Size(154, 39);
+            this.bnt_baocao.TabIndex = 9;
+            this.bnt_baocao.Text = "Báo cáo";
+            this.bnt_baocao.UseVisualStyleBackColor = false;
+            this.bnt_baocao.Click += new System.EventHandler(this.bnt_baocao_Click);
+            // 
+            // bnt_thanhtoan
+            // 
+            this.bnt_thanhtoan.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_thanhtoan.FlatAppearance.BorderSize = 0;
+            this.bnt_thanhtoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_thanhtoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_thanhtoan.Location = new System.Drawing.Point(29, 365);
+            this.bnt_thanhtoan.Name = "bnt_thanhtoan";
+            this.bnt_thanhtoan.Size = new System.Drawing.Size(154, 39);
+            this.bnt_thanhtoan.TabIndex = 10;
+            this.bnt_thanhtoan.Text = "Thanh toán";
+            this.bnt_thanhtoan.UseVisualStyleBackColor = false;
+            this.bnt_thanhtoan.Click += new System.EventHandler(this.bnt_thanhtoan_Click);
+            // 
+            // bnt_thoat
+            // 
+            this.bnt_thoat.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_thoat.FlatAppearance.BorderSize = 0;
+            this.bnt_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_thoat.Location = new System.Drawing.Point(29, 566);
+            this.bnt_thoat.Name = "bnt_thoat";
+            this.bnt_thoat.Size = new System.Drawing.Size(154, 39);
+            this.bnt_thoat.TabIndex = 12;
+            this.bnt_thoat.Text = "Đăng xuất";
+            this.bnt_thoat.UseVisualStyleBackColor = false;
+            this.bnt_thoat.Click += new System.EventHandler(this.bnt_thoat_Click);
+            // 
+            // chllform
+            // 
+            this.chllform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chllform.AutoScroll = true;
+            this.chllform.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("chllform.BackgroundImage")));
+            this.chllform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.chllform.Controls.Add(this.sub_menuhd);
+            this.chllform.Location = new System.Drawing.Point(189, 108);
+            this.chllform.Name = "chllform";
+            this.chllform.Size = new System.Drawing.Size(1045, 904);
+            this.chllform.TabIndex = 5;
+            // 
+            // sub_menuhd
+            // 
+            this.sub_menuhd.Controls.Add(this.bnt_hdban);
+            this.sub_menuhd.Controls.Add(this.bnt_hdnhap);
+            this.sub_menuhd.Location = new System.Drawing.Point(3, 212);
+            this.sub_menuhd.Name = "sub_menuhd";
+            this.sub_menuhd.Size = new System.Drawing.Size(160, 85);
+            this.sub_menuhd.TabIndex = 4;
+            // 
+            // bnt_hdban
+            // 
+            this.bnt_hdban.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_hdban.FlatAppearance.BorderSize = 0;
+            this.bnt_hdban.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_hdban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_hdban.Location = new System.Drawing.Point(3, 45);
+            this.bnt_hdban.Name = "bnt_hdban";
+            this.bnt_hdban.Size = new System.Drawing.Size(154, 39);
+            this.bnt_hdban.TabIndex = 14;
+            this.bnt_hdban.Text = "Hoá đơn bán";
+            this.bnt_hdban.UseVisualStyleBackColor = false;
+            this.bnt_hdban.Click += new System.EventHandler(this.bnt_hdban_Click);
+            // 
+            // bnt_hdnhap
+            // 
+            this.bnt_hdnhap.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_hdnhap.FlatAppearance.BorderSize = 0;
+            this.bnt_hdnhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_hdnhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_hdnhap.Location = new System.Drawing.Point(3, 0);
+            this.bnt_hdnhap.Name = "bnt_hdnhap";
+            this.bnt_hdnhap.Size = new System.Drawing.Size(154, 39);
+            this.bnt_hdnhap.TabIndex = 13;
+            this.bnt_hdnhap.Text = "Hoá đơn nhập";
+            this.bnt_hdnhap.UseVisualStyleBackColor = false;
+            this.bnt_hdnhap.Click += new System.EventHandler(this.bnt_hdnhap_Click);
+            // 
+            // sub_menubaocao
+            // 
+            this.sub_menubaocao.Controls.Add(this.bnt_htk);
+            this.sub_menubaocao.Controls.Add(this.bnt_kh);
+            this.sub_menubaocao.Controls.Add(this.bnt_dt);
+            this.sub_menubaocao.Location = new System.Drawing.Point(189, 410);
+            this.sub_menubaocao.Name = "sub_menubaocao";
+            this.sub_menubaocao.Size = new System.Drawing.Size(157, 128);
+            this.sub_menubaocao.TabIndex = 15;
+            // 
+            // bnt_htk
+            // 
+            this.bnt_htk.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_htk.FlatAppearance.BorderSize = 0;
+            this.bnt_htk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_htk.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_htk.Location = new System.Drawing.Point(0, 90);
+            this.bnt_htk.Name = "bnt_htk";
+            this.bnt_htk.Size = new System.Drawing.Size(154, 39);
+            this.bnt_htk.TabIndex = 18;
+            this.bnt_htk.Text = "Hàng hoá";
+            this.bnt_htk.UseVisualStyleBackColor = false;
+            this.bnt_htk.Click += new System.EventHandler(this.bnt_htk_Click);
+            // 
+            // bnt_kh
+            // 
+            this.bnt_kh.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_kh.FlatAppearance.BorderSize = 0;
+            this.bnt_kh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_kh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_kh.Location = new System.Drawing.Point(0, 45);
+            this.bnt_kh.Name = "bnt_kh";
+            this.bnt_kh.Size = new System.Drawing.Size(154, 39);
+            this.bnt_kh.TabIndex = 15;
+            this.bnt_kh.Text = "Khách hàng";
+            this.bnt_kh.UseVisualStyleBackColor = false;
+            this.bnt_kh.Click += new System.EventHandler(this.bnt_kh_Click);
+            // 
+            // bnt_dt
+            // 
+            this.bnt_dt.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_dt.FlatAppearance.BorderSize = 0;
+            this.bnt_dt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_dt.Location = new System.Drawing.Point(0, 0);
+            this.bnt_dt.Name = "bnt_dt";
+            this.bnt_dt.Size = new System.Drawing.Size(154, 39);
+            this.bnt_dt.TabIndex = 13;
+            this.bnt_dt.Text = "Kinh doanh";
+            this.bnt_dt.UseVisualStyleBackColor = false;
+            this.bnt_dt.Click += new System.EventHandler(this.bnt_dt_Click);
+            // 
+            // bnt_quanlynhacc
+            // 
+            this.bnt_quanlynhacc.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.bnt_quanlynhacc.FlatAppearance.BorderSize = 0;
+            this.bnt_quanlynhacc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bnt_quanlynhacc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnt_quanlynhacc.Location = new System.Drawing.Point(29, 455);
+            this.bnt_quanlynhacc.Name = "bnt_quanlynhacc";
+            this.bnt_quanlynhacc.Size = new System.Drawing.Size(154, 48);
+            this.bnt_quanlynhacc.TabIndex = 20;
+            this.bnt_quanlynhacc.Text = "Quản lý nhà cung cấp";
+            this.bnt_quanlynhacc.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bnt_quanlynhacc.UseVisualStyleBackColor = false;
+            this.bnt_quanlynhacc.Click += new System.EventHandler(this.bnt_quanlynhacc_Click);
             // 
             // main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1209, 991);
-            this.Controls.Add(this.panelchillform);
-            this.Controls.Add(this.Logo);
+            this.BackColor = System.Drawing.Color.Pink;
+            this.ClientSize = new System.Drawing.Size(1251, 1045);
+            this.Controls.Add(this.bnt_quanlynhacc);
+            this.Controls.Add(this.sub_menubaocao);
+            this.Controls.Add(this.chllform);
+            this.Controls.Add(this.bnt_thoat);
+            this.Controls.Add(this.bnt_thanhtoan);
+            this.Controls.Add(this.bnt_baocao);
+            this.Controls.Add(this.bnt_hoadon);
+            this.Controls.Add(this.bnt_qlkhach);
+            this.Controls.Add(this.bnt_qlnhanvien);
+            this.Controls.Add(this.bnt_qlysach);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.bntdangxuat);
-            this.Controls.Add(this.bntthanhtoan);
-            this.Controls.Add(this.bnt_quanlykhachhang);
-            this.Controls.Add(this.bnttimkiem);
-            this.Controls.Add(this.bntbaocao);
-            this.Controls.Add(this.bnthoadon);
-            this.Controls.Add(this.bntqlynhanvien);
-            this.Controls.Add(this.bntqlysach);
             this.Controls.Add(this.bnt_trangchu);
-            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "main";
             this.Text = "main";
+            this.Load += new System.EventHandler(this.main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.chllform.ResumeLayout(false);
+            this.sub_menuhd.ResumeLayout(false);
+            this.sub_menubaocao.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button bnt_trangchu;
-        private System.Windows.Forms.Button bntqlysach;
-        private System.Windows.Forms.Button bntqlynhanvien;
-        private System.Windows.Forms.Button bnthoadon;
-        private System.Windows.Forms.Button bntbaocao;
-        private System.Windows.Forms.Button bnttimkiem;
-        private System.Windows.Forms.Button bnt_quanlykhachhang;
-        private System.Windows.Forms.Button bntthanhtoan;
-        private System.Windows.Forms.Button bntdangxuat;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Panel Logo;
-        private System.Windows.Forms.Panel panelchillform;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button bnt_qlysach;
+        private System.Windows.Forms.Button bnt_qlnhanvien;
+        private System.Windows.Forms.Button bnt_qlkhach;
+        private System.Windows.Forms.Button bnt_hoadon;
+        private System.Windows.Forms.Button bnt_baocao;
+        private System.Windows.Forms.Button bnt_thanhtoan;
+        private System.Windows.Forms.Button bnt_thoat;
+        private System.Windows.Forms.Panel chllform;
+        private System.Windows.Forms.Panel sub_menubaocao;
+        private System.Windows.Forms.Button bnt_dt;
+        private System.Windows.Forms.Panel sub_menuhd;
+        private System.Windows.Forms.Button bnt_hdban;
+        private System.Windows.Forms.Button bnt_hdnhap;
+        private System.Windows.Forms.Button bnt_htk;
+        private System.Windows.Forms.Button bnt_kh;
+        private System.Windows.Forms.Label lbRole;
+        private System.Windows.Forms.Label lbusername;
+        private System.Windows.Forms.Button bnt_quanlynhacc;
     }
 }

@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpNgayMat = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSoluongmat = new System.Windows.Forms.TextBox();
+            this.txtSLMat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMasach = new System.Windows.Forms.ComboBox();
+            this.cmbMaSach = new System.Windows.Forms.ComboBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
-            this.btnBoqua = new System.Windows.Forms.Button();
+            this.btnBoQua = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
-            this.txtMalanmat = new System.Windows.Forms.TextBox();
-            this.dgvKhosach = new System.Windows.Forms.DataGridView();
+            this.txtMaLanMat = new System.Windows.Forms.TextBox();
+            this.dgvMatSach = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvKhosach)).BeginInit();
+            this.btnSua = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatSach)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // dtpNgayMat
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(389, 99);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(135, 20);
-            this.dateTimePicker1.TabIndex = 149;
+            this.dtpNgayMat.Location = new System.Drawing.Point(389, 99);
+            this.dtpNgayMat.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNgayMat.Name = "dtpNgayMat";
+            this.dtpNgayMat.Size = new System.Drawing.Size(135, 20);
+            this.dtpNgayMat.TabIndex = 149;
             // 
             // label3
             // 
@@ -64,13 +65,13 @@
             this.label3.TabIndex = 148;
             this.label3.Text = "Ngày mất";
             // 
-            // txtSoluongmat
+            // txtSLMat
             // 
-            this.txtSoluongmat.Location = new System.Drawing.Point(389, 63);
-            this.txtSoluongmat.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSoluongmat.Name = "txtSoluongmat";
-            this.txtSoluongmat.Size = new System.Drawing.Size(135, 20);
-            this.txtSoluongmat.TabIndex = 147;
+            this.txtSLMat.Location = new System.Drawing.Point(389, 63);
+            this.txtSLMat.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSLMat.Name = "txtSLMat";
+            this.txtSLMat.Size = new System.Drawing.Size(135, 20);
+            this.txtSLMat.TabIndex = 147;
             // 
             // label2
             // 
@@ -82,94 +83,110 @@
             this.label2.TabIndex = 146;
             this.label2.Text = "Số lượng mất";
             // 
-            // txtMasach
+            // cmbMaSach
             // 
-            this.txtMasach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtMasach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtMasach.FormattingEnabled = true;
-            this.txtMasach.Location = new System.Drawing.Point(91, 101);
-            this.txtMasach.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMasach.Name = "txtMasach";
-            this.txtMasach.Size = new System.Drawing.Size(131, 21);
-            this.txtMasach.TabIndex = 145;
+            this.cmbMaSach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbMaSach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbMaSach.FormattingEnabled = true;
+            this.cmbMaSach.Location = new System.Drawing.Point(91, 101);
+            this.cmbMaSach.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbMaSach.Name = "cmbMaSach";
+            this.cmbMaSach.Size = new System.Drawing.Size(131, 21);
+            this.cmbMaSach.TabIndex = 145;
             // 
             // btnThem
             // 
-            this.btnThem.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThem.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnThem.FlatAppearance.BorderSize = 0;
+            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(55, 316);
+            this.btnThem.Location = new System.Drawing.Point(16, 316);
             this.btnThem.Margin = new System.Windows.Forms.Padding(2);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(61, 23);
+            this.btnThem.Size = new System.Drawing.Size(75, 28);
             this.btnThem.TabIndex = 144;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnLuu
             // 
-            this.btnLuu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLuu.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnLuu.FlatAppearance.BorderSize = 0;
+            this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(245, 316);
+            this.btnLuu.Location = new System.Drawing.Point(284, 316);
             this.btnLuu.Margin = new System.Windows.Forms.Padding(2);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(51, 23);
+            this.btnLuu.Size = new System.Drawing.Size(65, 28);
             this.btnLuu.TabIndex = 143;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = false;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnXoa
             // 
-            this.btnXoa.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnXoa.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnXoa.FlatAppearance.BorderSize = 0;
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(155, 316);
+            this.btnXoa.Location = new System.Drawing.Point(199, 316);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(2);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(53, 23);
+            this.btnXoa.Size = new System.Drawing.Size(67, 28);
             this.btnXoa.TabIndex = 142;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // btnBoqua
+            // btnBoQua
             // 
-            this.btnBoqua.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnBoqua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBoqua.Location = new System.Drawing.Point(328, 316);
-            this.btnBoqua.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBoqua.Name = "btnBoqua";
-            this.btnBoqua.Size = new System.Drawing.Size(59, 23);
-            this.btnBoqua.TabIndex = 141;
-            this.btnBoqua.Text = "Bỏ qua";
-            this.btnBoqua.UseVisualStyleBackColor = false;
+            this.btnBoQua.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnBoQua.FlatAppearance.BorderSize = 0;
+            this.btnBoQua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBoQua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBoQua.Location = new System.Drawing.Point(363, 316);
+            this.btnBoQua.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBoQua.Name = "btnBoQua";
+            this.btnBoQua.Size = new System.Drawing.Size(73, 28);
+            this.btnBoQua.TabIndex = 141;
+            this.btnBoQua.Text = "Bỏ qua";
+            this.btnBoQua.UseVisualStyleBackColor = false;
+            this.btnBoQua.Click += new System.EventHandler(this.btnBoQua_Click);
             // 
             // btnDong
             // 
-            this.btnDong.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDong.Location = new System.Drawing.Point(426, 316);
+            this.btnDong.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnDong.FlatAppearance.BorderSize = 0;
+            this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDong.Location = new System.Drawing.Point(453, 316);
             this.btnDong.Margin = new System.Windows.Forms.Padding(2);
             this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(57, 23);
+            this.btnDong.Size = new System.Drawing.Size(71, 28);
             this.btnDong.TabIndex = 140;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = false;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
-            // txtMalanmat
+            // txtMaLanMat
             // 
-            this.txtMalanmat.Location = new System.Drawing.Point(91, 65);
-            this.txtMalanmat.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMalanmat.Name = "txtMalanmat";
-            this.txtMalanmat.Size = new System.Drawing.Size(131, 20);
-            this.txtMalanmat.TabIndex = 139;
+            this.txtMaLanMat.Location = new System.Drawing.Point(91, 65);
+            this.txtMaLanMat.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMaLanMat.Name = "txtMaLanMat";
+            this.txtMaLanMat.Size = new System.Drawing.Size(131, 20);
+            this.txtMaLanMat.TabIndex = 139;
             // 
-            // dgvKhosach
+            // dgvMatSach
             // 
-            this.dgvKhosach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKhosach.Location = new System.Drawing.Point(12, 154);
-            this.dgvKhosach.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvKhosach.Name = "dgvKhosach";
-            this.dgvKhosach.RowHeadersWidth = 51;
-            this.dgvKhosach.RowTemplate.Height = 24;
-            this.dgvKhosach.Size = new System.Drawing.Size(516, 138);
-            this.dgvKhosach.TabIndex = 138;
+            this.dgvMatSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMatSach.Location = new System.Drawing.Point(12, 154);
+            this.dgvMatSach.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvMatSach.Name = "dgvMatSach";
+            this.dgvMatSach.RowHeadersWidth = 51;
+            this.dgvMatSach.RowTemplate.Height = 24;
+            this.dgvMatSach.Size = new System.Drawing.Size(516, 138);
+            this.dgvMatSach.TabIndex = 138;
+            this.dgvMatSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMatSach_CellClick);
             // 
             // label7
             // 
@@ -201,29 +218,48 @@
             this.label1.TabIndex = 135;
             this.label1.Text = "QUẢN LÝ MẤT SÁCH";
             // 
+            // btnSua
+            // 
+            this.btnSua.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSua.FlatAppearance.BorderSize = 0;
+            this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSua.Location = new System.Drawing.Point(107, 316);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(75, 28);
+            this.btnSua.TabIndex = 150;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
             // qlymatsach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(551, 387);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.btnSua);
+            this.Controls.Add(this.dtpNgayMat);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtSoluongmat);
+            this.Controls.Add(this.txtSLMat);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtMasach);
+            this.Controls.Add(this.cmbMaSach);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.btnXoa);
-            this.Controls.Add(this.btnBoqua);
+            this.Controls.Add(this.btnBoQua);
             this.Controls.Add(this.btnDong);
-            this.Controls.Add(this.txtMalanmat);
-            this.Controls.Add(this.dgvKhosach);
+            this.Controls.Add(this.txtMaLanMat);
+            this.Controls.Add(this.dgvMatSach);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "qlymatsach";
             this.Text = "qlymatsach";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvKhosach)).EndInit();
+            this.Load += new System.EventHandler(this.qlymatsach_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMatSach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,20 +267,21 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpNgayMat;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSoluongmat;
+        private System.Windows.Forms.TextBox txtSLMat;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox txtMasach;
+        private System.Windows.Forms.ComboBox cmbMaSach;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnBoqua;
+        private System.Windows.Forms.Button btnBoQua;
         private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.TextBox txtMalanmat;
-        private System.Windows.Forms.DataGridView dgvKhosach;
+        private System.Windows.Forms.TextBox txtMaLanMat;
+        private System.Windows.Forms.DataGridView dgvMatSach;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSua;
     }
 }

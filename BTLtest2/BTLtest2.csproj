@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SqlServer.Types.170.700.9-ctp2p0\build\net472\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.170.700.9-ctp2p0\build\net472\Microsoft.SqlServer.Types.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,25 +36,106 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v24.2.UI, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Diagram.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Drawing.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v24.2.Drawing, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v24.2.Export, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v24.2.UI, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v24.2.Extensions, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v24.2.UI, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v24.2.Wizard, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraDiagram.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraLayout.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v24.2.CodeCompletion, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v24.2.Extensions, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v24.2.Core, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v24.2.Core.Desktop, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.CodeAnalysis, Version=4.14.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.4.14.0\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Server.1.0.0\lib\net46\Microsoft.SqlServer.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.170.700.9-ctp2p0\lib\net472\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.9.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.9.0.0\lib\net462\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.7.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,15 +145,39 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\taikhoan.cs" />
-    <Compile Include="Form\chiphi.cs">
+    <Compile Include="Class\clchitiethoadonban.cs" />
+    <Compile Include="Class\cldoanhthu.cs" />
+    <Compile Include="Class\clqlhoadonban.cs" />
+    <Compile Include="Class\KhachHang.cs" />
+    <Compile Include="Class\khosach.cs" />
+    <Compile Include="Class\MatHangThongKe.cs" />
+    <Compile Include="Class\MatSachDisplay.cs" />
+    <Compile Include="Class\NhaCungCap.cs" />
+    <Compile Include="Class\nhanvien_congviec.cs" />
+    <Compile Include="Class\qlhoadonnhap.cs" />
+    <Compile Include="Class\qlkhachhang.cs" />
+    <Compile Include="Class\Sach.cs" />
+    <Compile Include="Class\ThongKeItem.cs" />
+    <Compile Include="Class\UserSession.cs" />
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\chiphi.Designer.cs">
-      <DependentUpon>chiphi.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\bieudo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\bieudo.Designer.cs">
+      <DependentUpon>bieudo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\clchiphi.cs" />
+    <Compile Include="Class\taikhoan.cs" />
     <Compile Include="Form\doanhthu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,18 +189,6 @@
     </Compile>
     <Compile Include="Form\baocao.Designer.cs">
       <DependentUpon>baocao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="dangnhap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dangnhap.Designer.cs">
-      <DependentUpon>dangnhap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\home.cs">
       <SubType>Form</SubType>
@@ -123,6 +219,37 @@
     </Compile>
     <Compile Include="Form\loinhuan.Designer.cs">
       <DependentUpon>loinhuan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="function\baocaochiphi.cs" />
+    <Compile Include="Class\clchitiethoadonnhap.cs" />
+    <Compile Include="function\baocaodoanhthu.cs" />
+    <Compile Include="function\bcloinhuan.cs" />
+    <Compile Include="function\DataAccess.cs" />
+    <Compile Include="function\fcthanhtoan.cs" />
+    <Compile Include="function\functionqlykho.cs" />
+    <Compile Include="function\HoaDonBanLogic.cs" />
+    <Compile Include="function\HoaDonNhapLogic.cs" />
+    <Compile Include="function\InventoryDataAccess.cs" />
+    <Compile Include="function\KhachHang_Function.cs" />
+    <Compile Include="function\ktradangnhap.cs" />
+    <Compile Include="function\fmatsach.cs" />
+    <Compile Include="function\NhaCungCapBUS.cs" />
+    <Compile Include="function\NhanVienFunctions.cs" />
+    <Compile Include="function\thongke.cs" />
+    <Compile Include="function\thongkechiphi.cs" />
+    <Compile Include="function\thongkedoanhthu.cs" />
+    <Compile Include="function\thongkehanghoa.cs" />
+    <Compile Include="login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,26 +295,62 @@
     <Compile Include="Form\timkiemsach.Designer.cs">
       <DependentUpon>timkiemsach.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\qlykho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\qlykho.Designer.cs">
-      <DependentUpon>qlykho.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\qlymatsach.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\qlymatsach.Designer.cs">
       <DependentUpon>qlymatsach.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="dangnhap.resx">
-      <DependentUpon>dangnhap.cs</DependentUpon>
+    <Compile Include="Form\qlykho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\qlykho.Designer.cs">
+      <DependentUpon>qlykho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\qlkhachhang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\qlkhachhang.Designer.cs">
+      <DependentUpon>qlkhachhang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="_laptrinh_netDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_laptrinh_netDataSet5.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\bieudo.resx">
+      <DependentUpon>bieudo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\baocao.resx">
       <DependentUpon>baocao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\chiphi.resx">
-      <DependentUpon>chiphi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\doanhthu.resx">
       <DependentUpon>doanhthu.cs</DependentUpon>
@@ -228,6 +391,9 @@
     <EmbeddedResource Include="Form\thanhtoan.resx">
       <DependentUpon>thanhtoan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -241,12 +407,16 @@
     <EmbeddedResource Include="Form\timkiemsach.resx">
       <DependentUpon>timkiemsach.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\qlykho.resx">
-      <DependentUpon>qlykho.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\qlymatsach.resx">
       <DependentUpon>qlymatsach.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\qlykho.resx">
+      <DependentUpon>qlykho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\qlkhachhang.resx">
+      <DependentUpon>qlkhachhang.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App1.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -257,13 +427,114 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="_laptrinh_netDataSet.xsc">
+      <DependentUpon>_laptrinh_netDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet.xss">
+      <DependentUpon>_laptrinh_netDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet1.xsc">
+      <DependentUpon>_laptrinh_netDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet1.xss">
+      <DependentUpon>_laptrinh_netDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet2.xsc">
+      <DependentUpon>_laptrinh_netDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet2.xss">
+      <DependentUpon>_laptrinh_netDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet3.xsc">
+      <DependentUpon>_laptrinh_netDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet3.xss">
+      <DependentUpon>_laptrinh_netDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet4.xsc">
+      <DependentUpon>_laptrinh_netDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet4.xss">
+      <DependentUpon>_laptrinh_netDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet5.xsc">
+      <DependentUpon>_laptrinh_netDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="_laptrinh_netDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_laptrinh_netDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_laptrinh_netDataSet5.xss">
+      <DependentUpon>_laptrinh_netDataSet5.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="class\" />
-    <Folder Include="function\" />
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel1">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.4.14.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.4.14.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.SqlServer.Types.170.700.9-ctp2p0\build\net472\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.Types.170.700.9-ctp2p0\build\net472\Microsoft.SqlServer.Types.props'))" />
+  </Target>
 </Project>

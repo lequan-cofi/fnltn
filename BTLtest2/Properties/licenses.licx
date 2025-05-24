@@ -1,1 +1,3 @@
+DevExpress.XtraReports.ReportGeneration.ReportGenerator, DevExpress.XtraReports.v24.2.Extensions, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraScheduler.DateNavigator, DevExpress.XtraScheduler.v24.2, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraCharts.ChartControl, DevExpress.XtraCharts.v24.2.UI, Version=24.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

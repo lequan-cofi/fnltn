@@ -16,7 +16,7 @@ namespace BTLtest2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new dangnhap());
+            Application.Run(new login());
         }
     }
 }

@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace BTLtest2.Class
 {
-    internal class taikhoan
+    public class taikhoan
     {
-
+        public string usename { get; set; }
+        public string password { get; set; }
+        public int phanquyen { get; set; }
+        public taikhoan(string usename, string password, int phanquyen)
+        {
+            this.usename = usename;
+            this.password = password;
+            this.phanquyen = phanquyen;
+        }
+        public taikhoan()
+        {
+            this.usename = string.Empty;
+            this.password = string.Empty;
+            this.phanquyen = 0;
+        }
     }
 }

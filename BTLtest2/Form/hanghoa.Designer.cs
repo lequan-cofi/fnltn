@@ -47,16 +47,16 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(323, 180);
+            this.textBox4.Location = new System.Drawing.Point(322, 180);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(185, 26);
+            this.textBox4.Size = new System.Drawing.Size(186, 26);
             this.textBox4.TabIndex = 52;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(68, 173);
+            this.label5.Location = new System.Drawing.Point(68, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(149, 32);
             this.label5.TabIndex = 51;
@@ -69,10 +69,11 @@
             this.bntdong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntdong.Location = new System.Drawing.Point(662, 491);
             this.bntdong.Name = "bntdong";
-            this.bntdong.Size = new System.Drawing.Size(143, 51);
+            this.bntdong.Size = new System.Drawing.Size(142, 51);
             this.bntdong.TabIndex = 50;
             this.bntdong.Text = "Đóng";
             this.bntdong.UseVisualStyleBackColor = false;
+            this.bntdong.Click += new System.EventHandler(this.bntdong_Click);
             // 
             // bnthienthi
             // 
@@ -91,7 +92,7 @@
             this.bntbieudo.BackColor = System.Drawing.Color.LightSteelBlue;
             this.bntbieudo.FlatAppearance.BorderSize = 0;
             this.bntbieudo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntbieudo.Location = new System.Drawing.Point(287, 491);
+            this.bntbieudo.Location = new System.Drawing.Point(286, 491);
             this.bntbieudo.Name = "bntbieudo";
             this.bntbieudo.Size = new System.Drawing.Size(144, 51);
             this.bntbieudo.TabIndex = 48;
@@ -105,26 +106,27 @@
             this.bnttaoexel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnttaoexel.Location = new System.Drawing.Point(106, 491);
             this.bnttaoexel.Name = "bnttaoexel";
-            this.bnttaoexel.Size = new System.Drawing.Size(143, 51);
+            this.bnttaoexel.Size = new System.Drawing.Size(142, 51);
             this.bnttaoexel.TabIndex = 47;
             this.bnttaoexel.Text = "Xuất file";
             this.bnttaoexel.UseVisualStyleBackColor = false;
+            this.bnttaoexel.Click += new System.EventHandler(this.bnttaoexel_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(74, 293);
+            this.dataGridView1.Location = new System.Drawing.Point(74, 292);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(803, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(802, 151);
             this.dataGridView1.TabIndex = 46;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(323, 241);
+            this.textBox3.Location = new System.Drawing.Point(322, 242);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(185, 26);
+            this.textBox3.Size = new System.Drawing.Size(186, 26);
             this.textBox3.TabIndex = 45;
             // 
             // label4
@@ -141,14 +143,14 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(620, 120);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 26);
+            this.textBox2.Size = new System.Drawing.Size(186, 26);
             this.textBox2.TabIndex = 43;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(535, 114);
+            this.label3.Location = new System.Drawing.Point(536, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 32);
             this.label3.TabIndex = 42;
@@ -166,16 +168,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(323, 120);
+            this.textBox1.Location = new System.Drawing.Point(322, 120);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 26);
+            this.textBox1.Size = new System.Drawing.Size(186, 26);
             this.textBox1.TabIndex = 40;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(401, 32);
+            this.label1.Location = new System.Drawing.Point(400, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 32);
             this.label1.TabIndex = 39;

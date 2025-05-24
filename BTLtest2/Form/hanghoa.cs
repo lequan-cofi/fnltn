@@ -16,5 +16,15 @@ namespace BTLtest2
         {
             InitializeComponent();
         }
+
+        private void bntdong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bnttaoexel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

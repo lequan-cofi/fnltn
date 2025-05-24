@@ -16,7 +16,6 @@ namespace BTLtest2
         {
             InitializeComponent();
         }
-        private Form activeForm = null;
        
 
     }
