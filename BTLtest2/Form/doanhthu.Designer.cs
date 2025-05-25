@@ -38,7 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tongdt = new System.Windows.Forms.TextBox();
+            this.txtThongKeTren = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bnttaoexel = new System.Windows.Forms.Button();
             this.bntdong = new System.Windows.Forms.Button();
@@ -51,6 +51,8 @@
             this.chartControlDoanhThu = new DevExpress.XtraCharts.ChartControl();
             this.chartControlChiPhi = new DevExpress.XtraCharts.ChartControl();
             this.chartControlLoiNhuan = new DevExpress.XtraCharts.ChartControl();
+            this.txtThongKeDuoi = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDoanhThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -97,18 +99,18 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Thống kê trên";
             // 
-            // tongdt
+            // txtThongKeTren
             // 
-            this.tongdt.Location = new System.Drawing.Point(217, 173);
-            this.tongdt.Margin = new System.Windows.Forms.Padding(2);
-            this.tongdt.Name = "tongdt";
-            this.tongdt.Size = new System.Drawing.Size(125, 20);
-            this.tongdt.TabIndex = 7;
+            this.txtThongKeTren.Location = new System.Drawing.Point(217, 173);
+            this.txtThongKeTren.Margin = new System.Windows.Forms.Padding(2);
+            this.txtThongKeTren.Name = "txtThongKeTren";
+            this.txtThongKeTren.Size = new System.Drawing.Size(125, 20);
+            this.txtThongKeTren.TabIndex = 7;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 197);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 268);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
@@ -122,7 +124,7 @@
             this.bnttaoexel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.bnttaoexel.FlatAppearance.BorderSize = 0;
             this.bnttaoexel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bnttaoexel.Location = new System.Drawing.Point(85, 387);
+            this.bnttaoexel.Location = new System.Drawing.Point(78, 458);
             this.bnttaoexel.Margin = new System.Windows.Forms.Padding(2);
             this.bnttaoexel.Name = "bnttaoexel";
             this.bnttaoexel.Size = new System.Drawing.Size(95, 36);
@@ -136,7 +138,7 @@
             this.bntdong.BackColor = System.Drawing.Color.LightSteelBlue;
             this.bntdong.FlatAppearance.BorderSize = 0;
             this.bntdong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntdong.Location = new System.Drawing.Point(322, 387);
+            this.bntdong.Location = new System.Drawing.Point(315, 458);
             this.bntdong.Margin = new System.Windows.Forms.Padding(2);
             this.bntdong.Name = "bntdong";
             this.bntdong.Size = new System.Drawing.Size(95, 36);
@@ -163,7 +165,7 @@
             // 
             this.lbtongdoangthu.AutoSize = true;
             this.lbtongdoangthu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtongdoangthu.Location = new System.Drawing.Point(23, 349);
+            this.lbtongdoangthu.Location = new System.Drawing.Point(16, 420);
             this.lbtongdoangthu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbtongdoangthu.Name = "lbtongdoangthu";
             this.lbtongdoangthu.Size = new System.Drawing.Size(55, 24);
@@ -255,12 +257,33 @@
             this.chartControlLoiNhuan.Size = new System.Drawing.Size(438, 350);
             this.chartControlLoiNhuan.TabIndex = 22;
             // 
+            // txtThongKeDuoi
+            // 
+            this.txtThongKeDuoi.Location = new System.Drawing.Point(217, 215);
+            this.txtThongKeDuoi.Margin = new System.Windows.Forms.Padding(2);
+            this.txtThongKeDuoi.Name = "txtThongKeDuoi";
+            this.txtThongKeDuoi.Size = new System.Drawing.Size(125, 20);
+            this.txtThongKeDuoi.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(61, 210);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 24);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Thống kê dưới";
+            // 
             // doanhthu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(999, 539);
+            this.Controls.Add(this.txtThongKeDuoi);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chartControlLoiNhuan);
             this.Controls.Add(this.chartControlChiPhi);
             this.Controls.Add(this.chartControlDoanhThu);
@@ -273,7 +296,7 @@
             this.Controls.Add(this.bntdong);
             this.Controls.Add(this.bnttaoexel);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.tongdt);
+            this.Controls.Add(this.txtThongKeTren);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -301,7 +324,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tongdt;
+        private System.Windows.Forms.TextBox txtThongKeTren;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button bnttaoexel;
         private System.Windows.Forms.Button bntdong;
@@ -314,5 +337,7 @@
         private DevExpress.XtraCharts.ChartControl chartControlDoanhThu;
         private DevExpress.XtraCharts.ChartControl chartControlChiPhi;
         private DevExpress.XtraCharts.ChartControl chartControlLoiNhuan;
+        private System.Windows.Forms.TextBox txtThongKeDuoi;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView1 = new DevExpress.XtraCharts.DoughnutSeriesView();
-            this.txtLuongTon = new System.Windows.Forms.TextBox();
+            this.txtLuongTonTren = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.bntdong = new System.Windows.Forms.Button();
             this.bnthienthi = new System.Windows.Forms.Button();
@@ -47,6 +47,8 @@
             this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
             this.chartInventoryReport = new DevExpress.XtraCharts.ChartControl();
             this.sachBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtLuongTonDuoi = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInventoryReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -54,24 +56,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtLuongTon
+            // txtLuongTonTren
             // 
-            this.txtLuongTon.Location = new System.Drawing.Point(456, 113);
-            this.txtLuongTon.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLuongTon.Name = "txtLuongTon";
-            this.txtLuongTon.Size = new System.Drawing.Size(125, 20);
-            this.txtLuongTon.TabIndex = 66;
+            this.txtLuongTonTren.Location = new System.Drawing.Point(160, 84);
+            this.txtLuongTonTren.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLuongTonTren.Name = "txtLuongTonTren";
+            this.txtLuongTonTren.Size = new System.Drawing.Size(125, 20);
+            this.txtLuongTonTren.TabIndex = 66;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(299, 113);
+            this.label5.Location = new System.Drawing.Point(24, 84);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 24);
+            this.label5.Size = new System.Drawing.Size(132, 24);
             this.label5.TabIndex = 65;
-            this.label5.Text = "Lượng tồn";
+            this.label5.Text = "Lượng tồn trên";
             // 
             // bntdong
             // 
@@ -142,7 +144,7 @@
             // 
             // txtLuongBan
             // 
-            this.txtLuongBan.Location = new System.Drawing.Point(159, 113);
+            this.txtLuongBan.Location = new System.Drawing.Point(431, 84);
             this.txtLuongBan.Margin = new System.Windows.Forms.Padding(2);
             this.txtLuongBan.Name = "txtLuongBan";
             this.txtLuongBan.Size = new System.Drawing.Size(125, 20);
@@ -152,7 +154,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 113);
+            this.label4.Location = new System.Drawing.Point(320, 80);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 24);
@@ -221,18 +223,39 @@
             this.chartInventoryReport.Size = new System.Drawing.Size(373, 287);
             this.chartInventoryReport.TabIndex = 71;
             // 
+            // txtLuongTonDuoi
+            // 
+            this.txtLuongTonDuoi.Location = new System.Drawing.Point(165, 125);
+            this.txtLuongTonDuoi.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLuongTonDuoi.Name = "txtLuongTonDuoi";
+            this.txtLuongTonDuoi.Size = new System.Drawing.Size(125, 20);
+            this.txtLuongTonDuoi.TabIndex = 73;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 125);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 24);
+            this.label6.TabIndex = 72;
+            this.label6.Text = "Lượng tồn dưới";
+            // 
             // hangtonkho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(932, 420);
+            this.Controls.Add(this.txtLuongTonDuoi);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.chartInventoryReport);
             this.Controls.Add(this.dtpDenNgay);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpTuNgay);
-            this.Controls.Add(this.txtLuongTon);
+            this.Controls.Add(this.txtLuongTonTren);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.bntdong);
             this.Controls.Add(this.bnthienthi);
@@ -258,7 +281,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtLuongTon;
+        private System.Windows.Forms.TextBox txtLuongTonTren;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button bntdong;
         private System.Windows.Forms.Button bnthienthi;
@@ -274,5 +297,7 @@
         private System.Windows.Forms.DateTimePicker dtpDenNgay;
         private DevExpress.XtraCharts.ChartControl chartInventoryReport;
         private System.Windows.Forms.BindingSource sachBindingSource;
+        private System.Windows.Forms.TextBox txtLuongTonDuoi;
+        private System.Windows.Forms.Label label6;
     }
 }

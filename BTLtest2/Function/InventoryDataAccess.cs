@@ -13,77 +13,100 @@ namespace BTLtest2.function
     {
         private string connectionString = "Data Source=DESKTOP-VT5RUI9;Initial Catalog=laptrinh.net;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
+
         public List<Sach> GetInventoryItems(
-            DateTime? startDate, DateTime? endDate, // <<< ADDED date parameters
-            int? filterSoLuongTon = null, string filterSoLuongTonType = null,
+            DateTime? startDate, DateTime? endDate,
+            int? filterSoLuongTonTren, // MODIFIED: For "greater than or equal to"
+            int? filterSoLuongTonDuoi, // ADDED: For "less than or equal to"
             int? filterLuongBan = null, string filterLuongBanType = null)
         {
             List<Sach> inventoryItems = new List<Sach>();
             var queryBuilder = new StringBuilder();
             var parameters = new List<SqlParameter>();
-            var whereConditions = new List<string>(); // For date filtering in the main WHERE clause
+            var whereConditions = new List<string>(); // For date filtering on hdb
+            var havingConditions = new List<string>(); // For ks.SoLuong and SUM(cthdb.SLBan)
 
             queryBuilder.Append(@"
                 SELECT
                     ks.MaSach,
                     ks.TenSach,
-                    ks.SoLuong AS SoLuongTonKho, 
+                    ks.SoLuong AS SoLuongTonKho,
                     ks.DonGiaNhap,
                     ks.DonGiaBan,
                     ks.MaLoaiSach,
-                    -- Add other fields from KhoSach if needed and ensure they are in GROUP BY
                     ISNULL(SUM(CASE WHEN hdb.NgayBan IS NOT NULL THEN cthdb.SLBan ELSE 0 END), 0) AS LuongBanDaTinh
-                    -- We use a CASE statement inside SUM to only sum SLBan if NgayBan (from HoaDonBan) falls within the date range.
-                    -- The date range filtering will be applied in the WHERE clause of the main query that affects the JOIN with HoaDonBan.
                 FROM
                     dbo.KhoSach ks
                 LEFT JOIN
                     dbo.ChiTietHDBan cthdb ON ks.MaSach = cthdb.MaSach
             ");
 
-            // Conditionally join HoaDonBan and apply date filters in the WHERE clause
-            // This ensures SUM(cthdb.SLBan) is affected by the date range.
-            if (startDate.HasValue || endDate.HasValue)
+            // Conditionally join HoaDonBan if date filters are present or LuongBan filter is present
+            // This is crucial for the LuongBanDaTinh calculation and its filtering.
+            if (startDate.HasValue || endDate.HasValue || filterLuongBan.HasValue)
             {
                 queryBuilder.Append(@"
                 LEFT JOIN
                     dbo.HoaDonBan hdb ON cthdb.SoHDBan = hdb.SoHDBan
-                "); // The WHERE clause below will filter these joined records
+                ");
+            }
+            else // If no date or LuongBan filters, no need to join HoaDonBan for filtering purposes,
+                 // but still need it for SUM if it's not always 0.
+                 // However, the LuongBanDaTinh still needs the hdb join.
+                 // Let's simplify: always join hdb if cthdb is joined for LuongBanDaTinh.
+            {
+                // The initial LEFT JOIN cthdb then requires hdb for NgayBan check in SUM.
+                // So, if cthdb is joined, hdb should be too.
+                // A better structure for LuongBanDaTinh that is always correct regardless of other filters
+                // might involve a subquery for sales, but current approach is okay if WHERE conditions are careful.
+                // For clarity, ensure HoaDonBan is joined if ChiTietHDBan is.
+                queryBuilder.Append(@"
+                LEFT JOIN 
+                    dbo.HoaDonBan hdb ON cthdb.SoHDBan = hdb.SoHDBan 
+                        AND (1=1 "); // Start an AND block for potential date filters on the JOIN itself
+                                     // This can be cleaner than putting date logic in the main WHERE for a LEFT JOIN aggregate.
 
                 if (startDate.HasValue)
                 {
-                    // Add a condition that applies to the hdb.NgayBan OR allows rows from ks if no sales match
-                    // This structure is tricky with LEFT JOIN and date-filtered aggregates.
-                    // A subquery for LuongBan might be cleaner, or ensure the WHERE clause on dates
-                    // doesn't eliminate KhoSach records that have no sales in the period.
-
-                    // Let's adjust the approach: The main query gets all KhoSach.
-                    // The LuongBanDaTinh will be correctly calculated if the WHERE clause for dates is applied
-                    // to the records contributing to SUM.
-                    // The current structure of SUMMING and then filtering by date range in WHERE on hdb might be tricky.
-
-                    // Revised approach: Filter sales data *before* aggregation or ensure the GROUP BY includes all ks items.
-                    // The provided query with LEFT JOIN and GROUP BY ks.* should correctly sum sales only for matching hdb records
-                    // if the date condition is in a WHERE clause that applies to hdb.
+                    queryBuilder.Append(" AND hdb.NgayBan >= @StartDate ");
+                    parameters.Add(new SqlParameter("@StartDate", startDate.Value.Date));
                 }
+                if (endDate.HasValue)
+                {
+                    queryBuilder.Append(" AND hdb.NgayBan < @EndDatePlusOne ");
+                    parameters.Add(new SqlParameter("@EndDatePlusOne", endDate.Value.Date.AddDays(1)));
+                }
+                queryBuilder.Append(" ) "); // Close the AND block for the join condition
             }
 
-            // Add date conditions to the main WHERE clause if dates are provided
-            if (startDate.HasValue)
+
+            // WHERE clause for date filters (applies to hdb if joined for date filtering context)
+            // If we filtered hdb in the JOIN, we might not need these in the WHERE for LuongBanDaTinh accuracy
+            // However, if the LEFT JOIN was structured without date filters on the join itself, then WHERE is needed.
+            // The code had date conditions on hdb in WHERE, which is tricky with LEFT JOIN if you want to keep all KhoSach.
+            // Let's refine: if dates are for LuongBan, they should filter hdb.
+            // The `CASE WHEN hdb.NgayBan IS NOT NULL` in SUM handles non-matching sales.
+            // But if you want LuongBan for ONLY a specific period, the rows from hdb must be filtered.
+
+            // Corrected logic for date filtering effect on LuongBanDaTinh:
+            // The join to hdb should be filtered by date if you want LuongBanDaTinh for that period.
+            // The current query already filters hdb.NgayBan within the SUM implicitly by its presence.
+            // The `whereConditions` were for this.
+            // Let's stick to filtering hdb within the SUM or JOIN for LuongBan.
+            // The query logic for date filtering:
+            // The SUM(CASE WHEN hdb.NgayBan IS NOT NULL AND hdb.NgayBan >= @StartDate AND hdb.NgayBan < @EndDatePlusOne THEN cthdb.SLBan ELSE 0 END)
+            // would be more precise if NgayBan is always available.
+            // Given the current structure, the WHERE conditions on hdb.NgayBan are necessary to limit the sales period.
+
+            if (startDate.HasValue && (filterLuongBan.HasValue || (startDate.HasValue || endDate.HasValue))) // only add date filters to WHERE if they are relevant to hdb
             {
-                // This condition will apply to HoaDonBan if joined, potentially filtering out KhoSach items
-                // if they don't have sales in the period AND we are not careful.
-                // For an accurate "LuongBanDaTinh" within a period while keeping all "KhoSach" items,
-                // the SUM needs to be conditional or the join filtered.
-                // The ISNULL(SUM(CASE WHEN hdb.NgayBan IS NOT NULL THEN cthdb.SLBan ELSE 0 END), 0)
-                // combined with WHERE clause on hdb.NgayBan should work.
-                whereConditions.Add("(hdb.SoHDBan IS NULL OR hdb.NgayBan >= @StartDate)"); // Allow ks rows with no sales, or sales within date
-                parameters.Add(new SqlParameter("@StartDate", startDate.Value));
+                whereConditions.Add("(hdb.SoHDBan IS NULL OR hdb.NgayBan >= @StartDateFromWhere)");
+                parameters.Add(new SqlParameter("@StartDateFromWhere", startDate.Value.Date)); // Use a different param name to avoid conflict if used in JOIN
             }
-            if (endDate.HasValue)
+            if (endDate.HasValue && (filterLuongBan.HasValue || (startDate.HasValue || endDate.HasValue)))
             {
-                whereConditions.Add("(hdb.SoHDBan IS NULL OR hdb.NgayBan < @EndDatePlusOne)");
-                parameters.Add(new SqlParameter("@EndDatePlusOne", endDate.Value.AddDays(1)));
+                whereConditions.Add("(hdb.SoHDBan IS NULL OR hdb.NgayBan < @EndDatePlusOneFromWhere)");
+                parameters.Add(new SqlParameter("@EndDatePlusOneFromWhere", endDate.Value.Date.AddDays(1)));
             }
 
 
@@ -95,19 +118,18 @@ namespace BTLtest2.function
             queryBuilder.Append(@"
                 GROUP BY
                     ks.MaSach, ks.TenSach, ks.SoLuong, ks.DonGiaNhap, ks.DonGiaBan, ks.MaLoaiSach
-                    -- Add other fields from KhoSach here if selected in the main SELECT
             ");
 
-            var havingConditions = new List<string>();
-
-            if (filterSoLuongTon.HasValue && !string.IsNullOrEmpty(filterSoLuongTonType))
+            // HAVING clause for inventory quantity and sold quantity filters
+            if (filterSoLuongTonTren.HasValue)
             {
-                string opSLTon = GetOperator(filterSoLuongTonType);
-                if (!string.IsNullOrEmpty(opSLTon))
-                {
-                    havingConditions.Add($"ks.SoLuong {opSLTon} @FilterSoLuongTon");
-                    parameters.Add(new SqlParameter("@FilterSoLuongTon", filterSoLuongTon.Value));
-                }
+                havingConditions.Add($"ks.SoLuong >= @FilterSoLuongTonTren");
+                parameters.Add(new SqlParameter("@FilterSoLuongTonTren", filterSoLuongTonTren.Value));
+            }
+            if (filterSoLuongTonDuoi.HasValue)
+            {
+                havingConditions.Add($"ks.SoLuong <= @FilterSoLuongTonDuoi");
+                parameters.Add(new SqlParameter("@FilterSoLuongTonDuoi", filterSoLuongTonDuoi.Value));
             }
 
             if (filterLuongBan.HasValue && !string.IsNullOrEmpty(filterLuongBanType))
@@ -115,7 +137,7 @@ namespace BTLtest2.function
                 string opSLBan = GetOperator(filterLuongBanType);
                 if (!string.IsNullOrEmpty(opSLBan))
                 {
-                    // The SUM in HAVING refers to the sum over the records that made it through the WHERE clause
+                    // This SUM reflects sales within the date range if dates were applied to hdb
                     havingConditions.Add($"ISNULL(SUM(CASE WHEN hdb.NgayBan IS NOT NULL THEN cthdb.SLBan ELSE 0 END), 0) {opSLBan} @FilterLuongBan");
                     parameters.Add(new SqlParameter("@FilterLuongBan", filterLuongBan.Value));
                 }
@@ -126,7 +148,7 @@ namespace BTLtest2.function
                 queryBuilder.Append(" HAVING " + string.Join(" AND ", havingConditions));
             }
 
-            queryBuilder.Append(" ORDER BY ks.SoLuong ASC, ks.TenSach ASC;");
+            queryBuilder.Append(" ORDER BY ks.TenSach ASC;"); // Changed default sort for better readability
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -136,6 +158,10 @@ namespace BTLtest2.function
                     {
                         command.Parameters.AddRange(parameters.ToArray());
                     }
+                    // For debugging the query:
+                    // Console.WriteLine("Executing SQL: " + command.CommandText);
+                    // foreach (SqlParameter p in command.Parameters) { Console.WriteLine($"{p.ParameterName}: {p.Value}"); }
+
 
                     try
                     {
@@ -143,15 +169,14 @@ namespace BTLtest2.function
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            Sach item = new Sach // Ensure your Sach class has these properties
+                            Sach item = new Sach
                             {
                                 MaSach = reader["MaSach"].ToString(),
                                 TenSach = reader["TenSach"].ToString(),
                                 SoLuong = Convert.ToInt32(reader["SoLuongTonKho"]),
-                                DonGiaNhap = reader["DonGiaNhap"].ToString(), // Or convert to decimal
-                                DonGiaBan = reader["DonGiaBan"].ToString(),   // Or convert to decimal
+                                DonGiaNhap = reader["DonGiaNhap"].ToString(), // Or Convert.ToDecimal
+                                DonGiaBan = reader["DonGiaBan"].ToString(),   // Or Convert.ToDecimal
                                 MaLoaiSach = reader["MaLoaiSach"].ToString(),
-                                // Make sure Sach class has LuongBanDaTinh
                                 LuongBanDaTinh = Convert.ToInt32(reader["LuongBanDaTinh"])
                             };
                             inventoryItems.Add(item);
@@ -161,12 +186,12 @@ namespace BTLtest2.function
                     catch (SqlException ex)
                     {
                         Console.WriteLine("Lỗi SQL khi lấy hàng tồn kho: " + ex.Message);
-                        MessageBox.Show($"Lỗi truy vấn cơ sở dữ liệu: {ex.ToString()}", "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error); // Show full error
+                        MessageBox.Show($"Lỗi truy vấn cơ sở dữ liệu: {ex.ToString()}\nQuery:\n{command.CommandText}", "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("Lỗi chung khi lấy hàng tồn kho: " + ex.Message);
-                        MessageBox.Show($"Đã xảy ra lỗi: {ex.ToString()}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); // Show full error
+                        MessageBox.Show($"Đã xảy ra lỗi: {ex.ToString()}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -180,7 +205,7 @@ namespace BTLtest2.function
                 case "lessequal": return "<=";
                 case "greaterequal": return ">=";
                 case "equal": return "=";
-                default: return null;
+                default: return null; // Or throw an exception for an unsupported type
             }
         }
     }

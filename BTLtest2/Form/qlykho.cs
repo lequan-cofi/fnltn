@@ -199,7 +199,14 @@ namespace BTLtest2
                 txtTensach.Focus();
                 return;
             }
-            // Bạn có thể thêm các kiểm tra khác ở đây, ví dụ: ks.SoLuong > 0
+            // ks.SoLuong > 0
+            if (ks.SoLuong <= 0)
+            {
+                MessageBox.Show("Số lượng sách phải lớn hơn 0.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSoluong.Focus();
+                return;
+            }
+
 
             // Bước 3: Gọi phương thức AddSach và xử lý kết quả
             bool themThanhCong = false;

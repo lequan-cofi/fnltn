@@ -355,7 +355,7 @@ namespace BTLtest2.function
                         if (ex.Number == 547)
                         {
                             Console.WriteLine($"Không thể xóa sách '{maSachToDelete}' vì nó đang được tham chiếu bởi dữ liệu khác (ví dụ: chi tiết hóa đơn).");
-                            // Thông báo cho người dùng: MessageBox.Show("Không thể xóa sách này vì đang được sử dụng!", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //MessageBox.Show("Không thể xóa sách này vì đang được sử dụng!", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -520,23 +520,23 @@ namespace BTLtest2.function
                     parameters.Add(new SqlParameter("@TenSachParam", "%" + tuKhoaTenSach.Trim() + "%"));
                 }
 
-                if (!string.IsNullOrWhiteSpace(maLoaiSachFilter))
-                {
-                    conditions.Add("MaLoaiSach = @MaLoaiSachParam");
-                    parameters.Add(new SqlParameter("@MaLoaiSachParam", maLoaiSachFilter.Trim()));
-                }
+                //if (!string.IsNullOrWhiteSpace(maLoaiSachFilter))
+                //{
+                //    conditions.Add("MaLoaiSach = @MaLoaiSachParam");
+                //    parameters.Add(new SqlParameter("@MaLoaiSachParam", maLoaiSachFilter.Trim()));
+                //}
 
-                if (!string.IsNullOrWhiteSpace(maTacGiaFilter))
-                {
-                    conditions.Add("MaTacGia = @MaTacGiaParam");
-                    parameters.Add(new SqlParameter("@MaTacGiaParam", maTacGiaFilter.Trim()));
-                }
+                //if (!string.IsNullOrWhiteSpace(maTacGiaFilter))
+                //{
+                //    conditions.Add("MaTacGia = @MaTacGiaParam");
+                //    parameters.Add(new SqlParameter("@MaTacGiaParam", maTacGiaFilter.Trim()));
+                //}
 
-                if (!string.IsNullOrWhiteSpace(maNXBFilter))
-                {
-                    conditions.Add("MaNXB = @MaNXBParam");
-                    parameters.Add(new SqlParameter("@MaNXBParam", maNXBFilter.Trim()));
-                }
+                //if (!string.IsNullOrWhiteSpace(maNXBFilter))
+                //{
+                //    conditions.Add("MaNXB = @MaNXBParam");
+                //    parameters.Add(new SqlParameter("@MaNXBParam", maNXBFilter.Trim()));
+                //}
 
                 // Nối các điều kiện vào câu truy vấn
                 string finalQuery = baseQuery;

@@ -4,30 +4,25 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
+// using BTLtest2.Class; // Đảm bảo using MatHangThongKe
 namespace BTLtest2.function
 {
-    internal class thongkechiphi
+    internal static class thongkedoanhthuHelpers
     {
-        // ... (Các phương thức hiện có của bạn) ...
-
-        // Chuỗi kết nối CSDL của bạn
         private static string connectionString = "Data Source=DESKTOP-VT5RUI9;Initial Catalog=laptrinh.net;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-        private static SqlConnection connection = new SqlConnection(connectionString);
 
-        // Chi phí ở đây được hiểu là tổng tiền nhập hàng
-        public static List<MatHangThongKe> GetChiPhiTheoMatHang(DateTime fromDate, DateTime toDate, float? filterTren, float? filterDuoi)
+        // Cập nhật GetDoanhThuTheoMatHang
+        public static List<MatHangThongKe> GetDoanhThuTheoMatHang(DateTime fromDate, DateTime toDate, float? filterTren, float? filterDuoi)
         {
             List<MatHangThongKe> list = new List<MatHangThongKe>();
             StringBuilder queryBuilder = new StringBuilder(@"
                 SELECT 
                     k.TenSach, 
-                    SUM(ct.ThanhTien) as TongChiPhiMatHang
-                FROM HoaDonNhap h
-                JOIN ChiTietHDNhap ct ON h.SoHDNhap = ct.SoHDNhap
+                    SUM(ct.ThanhTien) as TongDoanhThuMatHang
+                FROM HoaDonBan h
+                JOIN ChiTietHDBan ct ON h.SoHDBan = ct.SoHDBan
                 JOIN KhoSach k ON ct.MaSach = k.MaSach
-                WHERE h.NgayNhap BETWEEN @fromDate AND @toDate");
+                WHERE h.NgayBan BETWEEN @fromDate AND @toDate");
 
             var parameters = new Dictionary<string, object>
             {
@@ -35,8 +30,13 @@ namespace BTLtest2.function
                 { "@toDate", toDate }
             };
 
+            // Lưu ý: filterTren và filterDuoi ở đây sẽ áp dụng cho TỔNG DOANH THU CỦA MỖI MẶT HÀNG
+            // Nếu bạn muốn áp dụng cho giá trị của từng hóa đơn bán lẻ, logic cần thay đổi.
+            // Hiện tại, nó sẽ lọc sau khi đã SUM.
+
             queryBuilder.Append(" GROUP BY k.TenSach");
 
+            // HAVING clause để lọc trên kết quả của SUM
             List<string> havingClauses = new List<string>();
             if (filterTren.HasValue)
             {
@@ -53,7 +53,8 @@ namespace BTLtest2.function
             {
                 queryBuilder.Append(" HAVING " + string.Join(" AND ", havingClauses));
             }
-            queryBuilder.Append(" ORDER BY TongChiPhiMatHang DESC");
+            queryBuilder.Append(" ORDER BY TongDoanhThuMatHang DESC");
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -71,7 +72,7 @@ namespace BTLtest2.function
                             list.Add(new MatHangThongKe
                             {
                                 TenMatHang = reader["TenSach"].ToString(),
-                                GiaTri = Convert.ToSingle(reader["TongChiPhiMatHang"])
+                                GiaTri = Convert.ToSingle(reader["TongDoanhThuMatHang"])
                             });
                         }
                     }

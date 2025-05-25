@@ -1,6 +1,6 @@
-﻿using BTLtest2.Class; // Giả sử InventoryDataPoint ở đây, hoặc namespace của nó
+﻿using BTLtest2.Class; 
 
-using BTLtest2.function; // Giả sử InventoryDataAccess ở đây
+using BTLtest2.function; 
 
 using DevExpress.XtraCharts;
 
@@ -34,7 +34,6 @@ using static BTLtest2.Class.ThongKeItem;
 
 
 
-// using System.Windows.Forms.DataVisualization.Charting; // Không dùng chart chuẩn
 
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -90,39 +89,17 @@ namespace BTLtest2
 
         {
 
-            txtLuongTon.Text = "";
-
+            txtLuongTonTren.Text = ""; // Assuming you rename txtLuongTon to txtLuongTonTren
+            txtLuongTonDuoi.Text = ""; // Initialize the new TextBox
             txtLuongBan.Text = "";
 
-
-
-            // Initialize ComboBox for filter types if you add them
-
-            // Example:
-
-            // cmbFilterTypeLuongTon.Items.AddRange(new object[] { "Nhỏ hơn hoặc bằng (<=)", "Lớn hơn hoặc bằng (>=)", "Bằng (==)" });
-
-            // if (cmbFilterTypeLuongTon.Items.Count > 0) cmbFilterTypeLuongTon.SelectedIndex = 0;
-
-            // cmbFilterTypeLuongBan.Items.AddRange(new object[] { "Nhỏ hơn hoặc bằng (<=)", "Lớn hơn hoặc bằng (>=)", "Bằng (==)" });
-
-            // if (cmbFilterTypeLuongBan.Items.Count > 0) cmbFilterTypeLuongBan.SelectedIndex = 0;
+            // chartInventoryReport.Visible = false; // You already have this
+            SetupDataGridView();
+            chartInventoryReport.Visible = false;
 
 
 
-
-
-            SetupDataGridView();
-
-            // Optionally load initial data, or wait for "Hiển thị" button click
-
-            // LoadInventoryData(); 
-
-            chartInventoryReport.Visible = false; // Ẩn biểu đồ ban đầu
-
-
-
-        }
+        }
 
         private void SetupDataGridView()
 
@@ -260,134 +237,85 @@ namespace BTLtest2
 
         {
 
-            DateTime? tuNgay = dtpTuNgay.Value;     // Assuming your DateTimePicker is named dtpTuNgay
 
-            DateTime? denNgay = dtpDenNgay.Value;   // Assuming your DateTimePicker is named dtpDenNgay
+            DateTime? tuNgay = dtpTuNgay.Value;
+            DateTime? denNgay = dtpDenNgay.Value;
 
-
-
-            // Basic date validation
-
-            if (tuNgay.HasValue && denNgay.HasValue && tuNgay.Value.Date > denNgay.Value.Date)
-
+            if (tuNgay.HasValue && denNgay.HasValue && tuNgay.Value.Date > denNgay.Value.Date)
             {
-
                 MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc.", "Lỗi Ngày", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                 return;
-
             }
 
+            int? filterSoLuongTonTren = null;
+            int? filterSoLuongTonDuoi = null;
+            int? filterLuongBan = null;
+            string filterLuongBanType = "greaterequal"; // Default
 
-
-            int? filterSoLuongTon = null;
-
-            // Placeholder: you'll need ComboBoxes on your UI for these filter types (e.g., cmbLuongTonFilterType)
-
-            string filterSoLuongTonType = "greaterequal"; // Default, e.g., from a ComboBox like cmbLuongTonFilterType
-
-
-
-            int? filterLuongBan = null;
-
-            string filterLuongBanType = "greaterequal";  // Default, e.g., from a ComboBox like cmbLuongBanFilterType
-
-
-
-
-
-            if (!string.IsNullOrWhiteSpace(txtLuongTon.Text))
-
+            // Filter for Lượng tồn trên
+            if (!string.IsNullOrWhiteSpace(txtLuongTonTren.Text))
             {
-
-                if (int.TryParse(txtLuongTon.Text, out int parsedSoLuong))
-
+                if (int.TryParse(txtLuongTonTren.Text, out int parsedSoLuongTren))
                 {
-
-                    if (parsedSoLuong >= 0) { filterSoLuongTon = parsedSoLuong; }
-
-                    else { MessageBox.Show("Lượng tồn phải là số không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTon.Focus(); return; }
-
+                    if (parsedSoLuongTren >= 0) { filterSoLuongTonTren = parsedSoLuongTren; }
+                    else { MessageBox.Show("Lượng tồn trên phải là số không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTonTren.Focus(); return; }
                 }
-
-                else { MessageBox.Show("Lượng tồn không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTon.Focus(); return; }
-
+                else { MessageBox.Show("Lượng tồn trên không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTonTren.Focus(); return; }
             }
 
+            // Filter for Lượng tồn dưới
+            if (!string.IsNullOrWhiteSpace(txtLuongTonDuoi.Text))
+            {
+                if (int.TryParse(txtLuongTonDuoi.Text, out int parsedSoLuongDuoi))
+                {
+                    if (parsedSoLuongDuoi >= 0) { filterSoLuongTonDuoi = parsedSoLuongDuoi; }
+                    else { MessageBox.Show("Lượng tồn dưới phải là số không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTonDuoi.Focus(); return; }
+                }
+                else { MessageBox.Show("Lượng tồn dưới không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongTonDuoi.Focus(); return; }
+            }
+
+            // Validation: Lượng tồn dưới cannot be less than Lượng tồn trên if both are specified
+            if (filterSoLuongTonTren.HasValue && filterSoLuongTonDuoi.HasValue && filterSoLuongTonDuoi.Value < filterSoLuongTonTren.Value)
+            {
+                MessageBox.Show("Lượng tồn dưới không thể nhỏ hơn Lượng tồn trên.", "Lỗi Lọc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLuongTonDuoi.Focus();
+                return;
+            }
 
 
             if (!string.IsNullOrWhiteSpace(txtLuongBan.Text))
-
             {
-
                 if (int.TryParse(txtLuongBan.Text, out int parsedLuongBan))
-
                 {
-
                     if (parsedLuongBan >= 0) { filterLuongBan = parsedLuongBan; }
-
                     else { MessageBox.Show("Lượng bán phải là số không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongBan.Focus(); return; }
-
                 }
-
                 else { MessageBox.Show("Lượng bán không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtLuongBan.Focus(); return; }
-
             }
 
-
-
-            // Example: If you add ComboBoxes for filter types (e.g., cmbLuongTonFilterType, cmbLuongBanFilterType)
-
-            // filterSoLuongTonType = GetFilterTypeFromComboBox(cmbLuongTonFilterType);
-
-            // filterLuongBanType = GetFilterTypeFromComboBox(cmbLuongBanFilterType);
-
-
-
-
-
-            try
-
+            try
             {
-
+                // Update the call to GetInventoryItems
                 List<Sach> inventory = inventoryDataAccess.GetInventoryItems(
-
-                            tuNgay, denNgay, // Pass date range
-
-                                                filterSoLuongTon, filterSoLuongTonType,
-
-                            filterLuongBan, filterLuongBanType);
-
-
+                                            tuNgay, denNgay,
+                                            filterSoLuongTonTren, // Pass new parameter
+                                            filterSoLuongTonDuoi, // Pass new parameter
+                                            filterLuongBan, filterLuongBanType);
 
                 dataGridView1.DataSource = null;
-
                 if (inventory != null && inventory.Any())
-
                 {
-
                     dataGridView1.DataSource = inventory;
-
                 }
-
                 else
-
                 {
-
                     MessageBox.Show("Không tìm thấy sách nào thỏa mãn điều kiện.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
-
             }
-
             catch (Exception ex)
-
             {
-
                 MessageBox.Show($"Đã xảy ra lỗi khi tải dữ liệu tồn kho: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
-
         }
 
 
@@ -405,391 +333,195 @@ namespace BTLtest2
         private void bnttaoexel_Click(object sender, EventArgs e)
 
         {
-
             Excel.Application excelApp = null;
-
             Excel.Workbook workbook = null;
-
             Excel.Worksheet worksheet = null;
-
             string tempExcelFilePath = string.Empty;
 
-
-
             try
-
             {
-
                 excelApp = new Excel.Application();
-
                 if (excelApp == null)
-
                 {
-
                     MessageBox.Show("Không thể khởi tạo ứng dụng Excel. Vui lòng kiểm tra cài đặt Office của bạn.", "Lỗi Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return;
-
                 }
-
                 workbook = excelApp.Workbooks.Add(Type.Missing);
-
                 worksheet = (Excel.Worksheet)workbook.ActiveSheet;
-
                 worksheet.Name = "HangTonKho";
 
+                int currentRow = 1;
+                int numberOfColumnsToMerge = dataGridView1.Columns.Count > 0 ? dataGridView1.Columns.Count : 7; // Adjust if needed
 
-
-                // --- BEGIN: Thêm thông tin cửa hàng và báo cáo ---
-
-                int currentRow = 1;
-
-                // Sử dụng số cột của dataGridView1 nếu có, nếu không thì mặc định một số cột cho merge
-
-                int numberOfColumnsToMerge = dataGridView1.Columns.Count > 0 ? dataGridView1.Columns.Count : 6; // Giả sử báo cáo có khoảng 6 cột chính
-
-
-
-                string tenCuaHang = "Cửa Hàng Minh Châu";
-
+                string tenCuaHang = "Cửa Hàng Minh Châu";
                 string diaChi = "Phượng Lích 1, Diễn Hoá, Diễn Châu, Nghệ An";
-
                 string dienThoai = "0335549158";
-
                 Excel.Range currentRange;
 
-
-
                 worksheet.Cells[currentRow, 1].Value = tenCuaHang;
-
                 worksheet.Cells[currentRow, 1].Font.Bold = true;
-
                 worksheet.Cells[currentRow, 1].Font.Size = 14;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]];
-
                 currentRange.Merge();
-
                 currentRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
                 currentRow++;
-
-
 
                 worksheet.Cells[currentRow, 1].Value = "Địa chỉ: " + diaChi;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRow++;
-
                 worksheet.Cells[currentRow, 1].Value = "Điện thoại: " + dienThoai;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRow++;
-
                 currentRow++;
 
-
-
                 string reportTitle = "BÁO CÁO HÀNG TỒN KHO";
-
                 worksheet.Cells[currentRow, 1].Value = reportTitle;
-
                 worksheet.Cells[currentRow, 1].Font.Bold = true;
-
                 worksheet.Cells[currentRow, 1].Font.Size = 16;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; currentRow++;
 
-
-
-                // dtpTuNgay, dtpDenNgay là tên DateTimePicker của bạn cho form này
-
-                string dateRangeInfo = $"Từ ngày: {dtpTuNgay.Value:dd/MM/yyyy} Đến ngày: {dtpDenNgay.Value:dd/MM/yyyy}";
-
+                string dateRangeInfo = $"Từ ngày: {dtpTuNgay.Value:dd/MM/yyyy} Đến ngày: {dtpDenNgay.Value:dd/MM/yyyy}";
                 worksheet.Cells[currentRow, 1].Value = dateRangeInfo;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; currentRow++;
 
-
-
-                // txtLuongTon, txtLuongBan là tên TextBox filter của bạn
-
-                string luongTonFilterInfo = txtLuongTon.Text.Trim();
-
-                if (!string.IsNullOrEmpty(luongTonFilterInfo))
-
+                // Update filter information for Excel
+                string luongTonTrenFilterInfo = txtLuongTonTren.Text.Trim();
+                if (!string.IsNullOrEmpty(luongTonTrenFilterInfo))
                 {
-
-                    worksheet.Cells[currentRow, 1].Value = $"Điều kiện lượng tồn: {luongTonFilterInfo}";
-
+                    worksheet.Cells[currentRow, 1].Value = $"Điều kiện lượng tồn trên: >= {luongTonTrenFilterInfo}";
                     currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRow++;
-
+                }
+                string luongTonDuoiFilterInfo = txtLuongTonDuoi.Text.Trim();
+                if (!string.IsNullOrEmpty(luongTonDuoiFilterInfo))
+                {
+                    worksheet.Cells[currentRow, 1].Value = $"Điều kiện lượng tồn dưới: <= {luongTonDuoiFilterInfo}";
+                    currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRow++;
                 }
 
                 string luongBanFilterInfo = txtLuongBan.Text.Trim();
-
                 if (!string.IsNullOrEmpty(luongBanFilterInfo))
-
                 {
-
-                    worksheet.Cells[currentRow, 1].Value = $"Điều kiện lượng bán: {luongBanFilterInfo}";
-
+                    worksheet.Cells[currentRow, 1].Value = $"Điều kiện lượng bán: >= {luongBanFilterInfo}"; // Assuming >= for LuongBan, adjust if you have a type selector
                     currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRow++;
-
                 }
-
-
 
                 string exportDateInfo = $"Ngày xuất báo cáo: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
-
                 worksheet.Cells[currentRow, 1].Value = exportDateInfo;
-
                 currentRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, numberOfColumnsToMerge]]; currentRange.Merge(); currentRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight; currentRow++;
-
                 currentRow++;
 
-                // --- END: Thêm thông tin ---
-
-
-
-                if (dataGridView1.Columns.Count == 0)
-
+                if (dataGridView1.Columns.Count == 0)
                 {
-
                     MessageBox.Show("Không có dữ liệu để xuất hoặc DataGridView chưa được cấu hình cột.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (workbook != null) { workbook.Close(false); }
+                    return;
+                }
 
-                    if (workbook != null) { workbook.Close(false); } // Đóng nếu đã tạo
-
-                    // COM objects sẽ được giải phóng trong finally
-
-                    return; // Thoát sớm
-
-                }
-
-
-
-                // Ghi tiêu đề cột từ DataGridView
-
-                for (int i = 0; i < dataGridView1.Columns.Count; i++)
-
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
                 {
-
                     if (dataGridView1.Columns[i].Visible)
-
                     {
-
                         Excel.Range cell = worksheet.Cells[currentRow, i + 1];
-
                         cell.Value = dataGridView1.Columns[i].HeaderText;
-
                         cell.Font.Bold = true;
-
                         cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
                         cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-
                         cell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
                     }
-
                 }
+                // currentRow++; // Data starts on the next row, which is i + currentRow + 1
 
-                // currentRow++; // Không tăng ở đây, dữ liệu sẽ ghi từ dòng tiếp theo
-
-
-
-                // Ghi dữ liệu dòng từ DataGridView
-
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-
-                    if (dataGridView1.Rows[i].IsNewRow) continue; // Bỏ qua dòng mới nếu có
-
-                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-
+                    if (dataGridView1.Rows[i].IsNewRow) continue;
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-
                         if (dataGridView1.Columns[j].Visible)
-
                         {
-
                             var value = dataGridView1.Rows[i].Cells[j].Value;
-
-                            Excel.Range currentCell = worksheet.Cells[i + currentRow + 1, j + 1];
-
+                            Excel.Range currentCell = worksheet.Cells[i + currentRow + 1, j + 1]; // Corrected row index
                             if (value is float || value is double || value is decimal || value is int) { currentCell.NumberFormat = "#,##0"; currentCell.Value = value; }
-
                             else if (value is DateTime dateValue) { currentCell.NumberFormat = "dd/MM/yyyy"; currentCell.Value = dateValue; }
-
                             else if (DateTime.TryParse(value?.ToString(), out DateTime parsedDate)) { currentCell.NumberFormat = "dd/MM/yyyy"; currentCell.Value = parsedDate; }
-
                             else { currentCell.Value = value?.ToString(); }
-
                             currentCell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
                         }
-
                     }
-
                 }
-
                 worksheet.Columns.AutoFit();
 
-
-
-                // --- Bước 1: Lưu vào file tạm ---
-
-                tempExcelFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + "_HangTonKhoPreview.xlsx");
-
+                tempExcelFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + "_HangTonKhoPreview.xlsx");
                 workbook.SaveAs(tempExcelFilePath);
 
-
-
-                // --- Quan trọng: Đóng và giải phóng COM object TRƯỚC KHI mở preview ---
-
-                if (worksheet != null) { Marshal.ReleaseComObject(worksheet); worksheet = null; }
-
+                if (worksheet != null) { Marshal.ReleaseComObject(worksheet); worksheet = null; }
                 if (workbook != null) { workbook.Close(false); Marshal.ReleaseComObject(workbook); workbook = null; }
-
                 if (excelApp != null) { excelApp.Quit(); Marshal.ReleaseComObject(excelApp); excelApp = null; }
-
                 GC.Collect();
-
                 GC.WaitForPendingFinalizers();
 
-
-
-                // --- Bước 2: Mở file tạm để xem trước ---
-
-                DialogResult userAction = DialogResult.Cancel;
-
+                DialogResult userAction = DialogResult.Cancel;
                 Process excelProcess = null;
-
                 try
-
                 {
-
                     excelProcess = Process.Start(tempExcelFilePath);
-
                     userAction = MessageBox.Show(
-
-                      "Báo cáo Hàng Tồn Kho đã được mở để xem trước.\n\nBạn có muốn LƯU file này không?",
-
-                      "Xác Nhận Lưu File Excel", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
+                        "Báo cáo Hàng Tồn Kho đã được mở để xem trước.\n\nBạn có muốn LƯU file này không?",
+                        "Xác Nhận Lưu File Excel", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 }
-
                 catch (Exception exPreview)
-
                 {
-
                     MessageBox.Show("Không thể mở bản xem trước Excel: " + exPreview.Message +
-
-                            "\n\nBạn vẫn có thể chọn để lưu file.", "Lỗi Xem Trước", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                                    "\n\nBạn vẫn có thể chọn để lưu file.", "Lỗi Xem Trước", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     userAction = MessageBox.Show(
-
-                      "Không thể mở xem trước. Bạn có muốn tiếp tục lưu file Excel này không?",
-
-                      "Xác Nhận Lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+                        "Không thể mở xem trước. Bạn có muốn tiếp tục lưu file Excel này không?",
+                        "Xác Nhận Lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
-
-
 
                 if (userAction == DialogResult.Yes)
-
                 {
-
-                    SaveFileDialog saveFileDialog = new SaveFileDialog // Tạo mới khi cần
-
-                    {
-
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
                         Filter = "Excel files (*.xlsx)|*.xlsx|Excel 97-2003 Workbook (*.xls)|*.xls",
-
                         Title = "Chọn nơi lưu file Báo Cáo Hàng Tồn Kho",
-
                         FileName = "BaoCaoHangTonKho.xlsx"
-
                     };
 
-
-
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
-
                     {
-
                         try
-
                         {
-
                             if (excelProcess != null && !excelProcess.HasExited)
-
                             {
-
                                 try { excelProcess.CloseMainWindow(); excelProcess.WaitForExit(1000); } catch { /* ignore */ }
-
                             }
-
                             File.Copy(tempExcelFilePath, saveFileDialog.FileName, true);
-
                             MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                             try { Process.Start(saveFileDialog.FileName); }
-
                             catch (Exception exOpenFinal) { MessageBox.Show("Không thể mở file Excel đã lưu: " + exOpenFinal.Message, "Lỗi Mở File", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-
                         }
-
                         catch (IOException ioEx) { MessageBox.Show($"Lỗi khi lưu file Excel: {ioEx.Message}\nVui lòng đóng file Excel xem trước (nếu đang mở) và thử lại.", "Lỗi Lưu File", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
                         catch (Exception exSaveFinal) { MessageBox.Show("Lỗi khi lưu file Excel cuối cùng: " + exSaveFinal.Message, "Lỗi Lưu File", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
                     }
-
                     else { MessageBox.Show("Thao tác lưu file Excel đã được hủy.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-
                 }
-
                 else { MessageBox.Show("Thao tác xuất file Excel đã được hủy.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-
             }
-
             catch (Exception ex)
-
             {
-
                 MessageBox.Show("Lỗi khi xuất Excel: " + ex.ToString(), "Lỗi Xuất File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
-
             finally
-
             {
-
                 ReleaseComObject(worksheet);
-
                 ReleaseComObject(workbook);
-
                 ReleaseComObject(excelApp);
 
-
-
                 if (!string.IsNullOrEmpty(tempExcelFilePath) && File.Exists(tempExcelFilePath))
-
                 {
-
                     try { File.Delete(tempExcelFilePath); }
-
                     catch (IOException ioExDel) { Console.WriteLine($"Lỗi khi xóa file Excel tạm ({tempExcelFilePath}): {ioExDel.Message}."); }
-
                     catch (Exception exDeleteTemp) { Console.WriteLine("Lỗi không xác định khi xóa file Excel tạm: " + exDeleteTemp.Message); }
-
                 }
-
                 GC.Collect();
-
                 GC.WaitForPendingFinalizers();
-
             }
 
         }
@@ -865,75 +597,65 @@ namespace BTLtest2
         {
 
             DateTime? tuNgay = dtpTuNgay.Value;
-
             DateTime? denNgay = dtpDenNgay.Value;
 
+            int? filterSoLuongTonTren = null;
+            int? filterSoLuongTonDuoi = null;
+            int? filterLuongBan = null;
+            string filterLuongBanType = "greaterequal"; // Or get from ComboBox if you have one
 
-
-            int? filterSoLuongTon = null;
-
-            string filterSoLuongTonType = "greaterequal"; // Hoặc lấy từ ComboBox
-
-            int? filterLuongBan = null;
-
-            string filterLuongBanType = "greaterequal"; // Hoặc lấy từ ComboBox
-
-
-
-            if (!string.IsNullOrWhiteSpace(txtLuongTon.Text)) { if (int.TryParse(txtLuongTon.Text, out int val) && val >= 0) filterSoLuongTon = val; else { /* Xử lý lỗi nhập liệu */ } }
-
-            if (!string.IsNullOrWhiteSpace(txtLuongBan.Text)) { if (int.TryParse(txtLuongBan.Text, out int val) && val >= 0) filterLuongBan = val; else { /* Xử lý lỗi nhập liệu */ } }
-
-
-
-            try
-
+            // Filter for Lượng tồn trên
+            if (!string.IsNullOrWhiteSpace(txtLuongTonTren.Text))
             {
-
-                List<Sach> sachItems = inventoryDataAccess.GetInventoryItems(
-
-                               tuNgay, denNgay,
-
-                               filterSoLuongTon, filterSoLuongTonType,
-
-                               filterLuongBan, filterLuongBanType);
-
-
-
-                List<InventoryDataPoint> chartData = new List<InventoryDataPoint>();
-
-                if (sachItems != null)
-
-                {
-
-                    chartData = sachItems
-
-                      .Where(s => s.SoLuong > 0)
-
-                      .Select(s => new InventoryDataPoint { TenSach = s.TenSach, LuongTon = s.SoLuong })
-
-                      .OrderByDescending(dp => dp.LuongTon)
-
-                      .ToList();
-
-                }
-
-
-
-                // Gọi hàm vẽ biểu đồ doughnut với tiêu đề mặc định
-
-                PopulateInventoryPieChart(this.chartInventoryReport, chartData, "Tồn Kho Theo Mặt Hàng");
-
+                if (int.TryParse(txtLuongTonTren.Text, out int val) && val >= 0) filterSoLuongTonTren = val;
+                else { /* Optionally show error or ignore for chart */ }
+            }
+            // Filter for Lượng tồn dưới
+            if (!string.IsNullOrWhiteSpace(txtLuongTonDuoi.Text))
+            {
+                if (int.TryParse(txtLuongTonDuoi.Text, out int val) && val >= 0) filterSoLuongTonDuoi = val;
+                else { /* Optionally show error or ignore for chart */ }
             }
 
-            catch (Exception ex)
-
+            // Validation for chart (optional, depends on how strict you want it for the chart)
+            if (filterSoLuongTonTren.HasValue && filterSoLuongTonDuoi.HasValue && filterSoLuongTonDuoi.Value < filterSoLuongTonTren.Value)
             {
+                // For chart, you might choose to ignore the invalid filter or show an empty chart with a message
+                PopulateInventoryPieChart(this.chartInventoryReport, new List<InventoryDataPoint>(), "Lỗi: Lượng tồn dưới < lượng tồn trên");
+                return;
+            }
 
+
+            if (!string.IsNullOrWhiteSpace(txtLuongBan.Text))
+            {
+                if (int.TryParse(txtLuongBan.Text, out int val) && val >= 0) filterLuongBan = val;
+                else { /* Xử lý lỗi nhập liệu */ }
+            }
+
+            try
+            {
+                // Update the call to GetInventoryItems
+                List<Sach> sachItems = inventoryDataAccess.GetInventoryItems(
+                                            tuNgay, denNgay,
+                                            filterSoLuongTonTren, // Pass new parameter
+                                            filterSoLuongTonDuoi, // Pass new parameter
+                                            filterLuongBan, filterLuongBanType);
+
+                List<InventoryDataPoint> chartData = new List<InventoryDataPoint>();
+                if (sachItems != null)
+                {
+                    chartData = sachItems
+                        .Where(s => s.SoLuong > 0) // Chart only makes sense for items with stock
+                        .Select(s => new InventoryDataPoint { TenSach = s.TenSach, LuongTon = s.SoLuong })
+                        .OrderByDescending(dp => dp.LuongTon)
+                        .ToList();
+                }
+                PopulateInventoryPieChart(this.chartInventoryReport, chartData, "Tồn Kho Theo Mặt Hàng");
+            }
+            catch (Exception ex)
+            {
                 PopulateInventoryPieChart(this.chartInventoryReport, new List<InventoryDataPoint>(), "Tồn Kho Theo Mặt Hàng (Lỗi)");
-
                 MessageBox.Show($"Lỗi khi tải dữ liệu cho biểu đồ: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
 
         }

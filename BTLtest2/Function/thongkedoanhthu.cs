@@ -17,52 +17,73 @@ namespace BTLtest2.function
         private static SqlConnection connection = new SqlConnection(connectionString);
 
 
-        public static List<MatHangThongKe> GetDoanhThuTheoMatHang(DateTime fromDate, DateTime toDate)
+        public static List<MatHangThongKe> GetDoanhThuTheoMatHang(DateTime fromDate, DateTime toDate, float? filterTren, float? filterDuoi)
         {
-            List<MatHangThongKe> data = new List<MatHangThongKe>();
-            // Ví dụ câu SQL (cần điều chỉnh cho phù hợp với CSDL của bạn):
-            string query = @"
-                SELECT
-                    ks.TenSach,  -- Hoặc tên cột tương ứng trong bảng sách của bạn
-                    SUM(cthdb.ThanhTien) AS TongGiaTri
-                FROM dbo.HoaDonBan hdb
-                JOIN dbo.ChiTietHDBan cthdb ON hdb.SoHDBan = cthdb.SoHDBan
-                JOIN dbo.KhoSach ks ON cthdb.MaSach = ks.MaSach -- Giả sử bảng KhoSach chứa TenSach
-                WHERE hdb.NgayBan BETWEEN @FromDate AND @ToDate
-                GROUP BY ks.TenSach
-                HAVING SUM(cthdb.ThanhTien) > 0 -- Chỉ lấy các mặt hàng có doanh thu
-                ORDER BY SUM(cthdb.ThanhTien) DESC;
-            ";
+            List<MatHangThongKe> list = new List<MatHangThongKe>();
+            StringBuilder queryBuilder = new StringBuilder(@"
+                SELECT 
+                    k.TenSach, 
+                    SUM(ct.ThanhTien) as TongDoanhThuMatHang
+                FROM HoaDonBan h
+                JOIN ChiTietHDBan ct ON h.SoHDBan = ct.SoHDBan
+                JOIN KhoSach k ON ct.MaSach = k.MaSach
+                WHERE h.NgayBan BETWEEN @fromDate AND @toDate");
 
-            
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var parameters = new Dictionary<string, object>
             {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                { "@fromDate", fromDate },
+                { "@toDate", toDate }
+            };
+
+            // Lưu ý: filterTren và filterDuoi ở đây sẽ áp dụng cho TỔNG DOANH THU CỦA MỖI MẶT HÀNG
+            // Nếu bạn muốn áp dụng cho giá trị của từng hóa đơn bán lẻ, logic cần thay đổi.
+            // Hiện tại, nó sẽ lọc sau khi đã SUM.
+
+            queryBuilder.Append(" GROUP BY k.TenSach");
+
+            // HAVING clause để lọc trên kết quả của SUM
+            List<string> havingClauses = new List<string>();
+            if (filterTren.HasValue)
+            {
+                havingClauses.Add("SUM(ct.ThanhTien) >= @filterTren");
+                parameters["@filterTren"] = filterTren.Value;
+            }
+            if (filterDuoi.HasValue)
+            {
+                havingClauses.Add("SUM(ct.ThanhTien) <= @filterDuoi");
+                parameters["@filterDuoi"] = filterDuoi.Value;
+            }
+
+            if (havingClauses.Any())
+            {
+                queryBuilder.Append(" HAVING " + string.Join(" AND ", havingClauses));
+            }
+            queryBuilder.Append(" ORDER BY TongDoanhThuMatHang DESC");
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(queryBuilder.ToString(), connection))
                 {
-                    cmd.Parameters.AddWithValue("@FromDate", fromDate);
-                    cmd.Parameters.AddWithValue("@ToDate", toDate);
-                    try
+                    foreach (var param in parameters)
                     {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
+                        command.Parameters.AddWithValue(param.Key, param.Value);
+                    }
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
                         while (reader.Read())
                         {
-                            data.Add(new MatHangThongKe
+                            list.Add(new MatHangThongKe
                             {
                                 TenMatHang = reader["TenSach"].ToString(),
-                                GiaTri = Convert.ToSingle(reader["TongGiaTri"])
+                                GiaTri = Convert.ToSingle(reader["TongDoanhThuMatHang"])
                             });
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        // Xử lý lỗi (ví dụ: ghi log, throw exception)
-                        Console.WriteLine("Lỗi khi lấy doanh thu theo mặt hàng: " + ex.Message);
-                    }
                 }
             }
-            
-            return data;
+            return list;
         }
     }
 }
